@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import HomePage from "./Pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Project from "./Pages/Project";
 
 function App() {
   useEffect(() => {
@@ -15,7 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/projects" element={<Projects />} /> */}
+        <Route path="/projects" element={<Project />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
     </Router>

@@ -9,7 +9,7 @@
 //     { icon: <FaReact size={40} color="#61DBFB" />, name: "React" },
 //     { icon: <FaNodeJs size={40} color="#68A063" />, name: "Node.js" },
 //     { icon: <FaHtml5 size={40} color="#e34c26" />, name: "HTML5" },
-//   ];
+// //   ];
 
 //   return (
 //     <div className="relative">

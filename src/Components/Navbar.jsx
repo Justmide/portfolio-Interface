@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import interfaceLogo from '../assets/Images/interface_logo.png'; // Adjust the path as necessary
+import { Link, useLocation } from 'react-router-dom'; // Add these imports
+import interfaceLogo from '../assets/Images/interface_logo.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('Home');
+  const location = useLocation();
 
-  const navLinks = ['Home', 'Projects', 'Contact'];
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Projects', path: '/projects' },
+    
+  ];
 
   return (
     <nav className="lg:px-[60px] w-full fixed top-0 left-0 flex justify-between items-center p-4 bg-black backdrop-blur-lg z-50 border-b border-gray-800 shadow-lg">
@@ -19,7 +24,6 @@ const Navbar = () => {
           SkryptByMide
         </h1>
       </div>
-      
       <button
         className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -34,22 +38,20 @@ const Navbar = () => {
           </svg>
         )}
       </button>
-
       <ul className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
-          <li key={link}>
-            <a
-              href={`#${link.toLowerCase()}`}
+          <li key={link.name}>
+            <Link
+              to={link.path}
               className={`relative text-white/80 hover:text-white transition-colors duration-300 ${
-                activeLink === link ? 'text-white font-medium' : ''
+                location.pathname === link.path ? 'text-white font-medium' : ''
               }`}
-              onClick={() => setActiveLink(link)}
             >
-              {link}
-              {activeLink === link && (
+              {link.name}
+              {location.pathname === link.path && (
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
               )}
-            </a>
+            </Link>
           </li>
         ))}
         <li>
@@ -58,26 +60,22 @@ const Navbar = () => {
           </button>
         </li>
       </ul>
-
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-[125px] left-0 w-full bg-gray-900/95 backdrop-blur-md text-white flex flex-col gap-4 p-6 md:hidden animate-fadeIn">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
+            <Link
+              key={link.name}
+              to={link.path}
               className={`py-3 px-4 rounded-lg transition-all duration-300 ${
-                activeLink === link
+                location.pathname === link.path
                   ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border-l-4 border-pink-500'
                   : 'hover:bg-white/10'
               }`}
-              onClick={() => {
-                setActiveLink(link);
-                setMenuOpen(false);
-              }}
+              onClick={() => setMenuOpen(false)}
             >
-              {link}
-            </a>
+              {link.name}
+            </Link>
           ))}
           <button className="mt-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
             Hire Me

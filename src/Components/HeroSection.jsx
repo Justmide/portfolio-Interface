@@ -3,6 +3,12 @@ import Me from "../assets/Images/me.png";
 import arrow from "../assets/Images/arrow.png";
 import { Typewriter } from 'react-simple-typewriter';
 import MyService from "./MyService";
+import PrimaryBtn from "./ButtonStyles/PrimaryBtn";
+import TechStack from "../Animations & Motions/TechStack";
+import Installation from "../Animations & Motions/Installation";
+import ProjectLinks from "./Projects/ProjectLinks";
+
+
 
 const HeroSection = () => {
   return (
@@ -51,14 +57,26 @@ const HeroSection = () => {
             delaySpeed={1000}
           />
         </p>
-          <h1 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-4 font-script">
+          <h1 
+          className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-4 font-script"
+          >
            Pixel to Production <br /> I Build It All
           </h1>
           <p className="text-lg text-gray-300 leading-relaxed font-quicksand"
           data-aos="fade-up">
-         MERN stack developer building fast, scalable web apps. From sleek React UIs to secure Node.js backends. I turn ideas into powerful, production ready digital products.
+        From UI to backend, I build fast, scalable apps with the MERN stack.
           </p>
+
+          <div 
+          className="mt-5 w-100 flex gap-5">
+          <PrimaryBtn text="Contact Me"/>
+          <PrimaryBtn text="Download CV"/>
+         
+          
         </div>
+        </div>
+
+        
       </div>
 
       {/* MY SERVICE  */}
@@ -66,7 +84,22 @@ const HeroSection = () => {
      >
       <MyService />
     </div>
+
+    {/* MY STACK */}
+    <div className="mt-[100px]">
+     <TechStack />
     </div>
+    <div>
+      <Installation />
+    </div>
+
+    {/* PROJECT */}
+    <div className="mt-[100px]">
+      {/* Add your project component here */}
+     <ProjectLinks />
+    </div>
+
+     </div>
   );
 };
 
