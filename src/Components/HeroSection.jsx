@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import Me from "../assets/Images/me.png";
 import arrow from "../assets/Images/arrow.png";
 import { Typewriter } from 'react-simple-typewriter';
@@ -7,10 +7,23 @@ import PrimaryBtn from "./ButtonStyles/PrimaryBtn";
 import TechStack from "../Animations & Motions/TechStack";
 import Installation from "../Animations & Motions/Installation";
 import ProjectLinks from "./Projects/ProjectLinks";
-
+import ContactBox from "./Contact/ContactBox";
 
 
 const HeroSection = () => {
+
+  const handleClick = () => {
+    const phoneNumber = '2347088136059'; // Add country code (234 for Nigeria)
+    const message = 'Hello! I came across your portfolio and wanted to connect...';
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
+  const goToIg = () =>{
+    const url = 'https://www.instagram.com/interface.iq/';
+    window.open(url, '_blank')
+  }
+
   return (
     <div className="w-full mt-[118px] p-4 bg-gradient-to-b from-black via-[#0f172a] to-black text-white flex flex-col items-center justify-center px-6 py-10 relative overflow-hidden">
       
@@ -68,9 +81,16 @@ const HeroSection = () => {
           </p>
 
           <div 
-          className="mt-5 w-100 flex gap-5">
-          <PrimaryBtn text="Contact Me"/>
-          <PrimaryBtn text="Download CV"/>
+          className="mt-5 w-100 flex gap-5 items-center justify-center lg:justify-start">
+          <PrimaryBtn 
+          text="Contact Me"
+          onClick={handleClick}
+          />
+          
+          <PrimaryBtn 
+          text="Instagram"
+          onClick={goToIg}
+          />
          
           
         </div>
@@ -94,9 +114,13 @@ const HeroSection = () => {
     </div>
 
     {/* PROJECT */}
-    <div className="mt-[100px]">
+    <div className="mt-[40px]">
       {/* Add your project component here */}
      <ProjectLinks />
+    </div>
+
+    <div>
+      <ContactBox />
     </div>
 
      </div>

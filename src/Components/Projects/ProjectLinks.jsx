@@ -9,59 +9,59 @@ import ChefBite from '../../assets/Projects/ChefBite.png';
 
 const ProjectLinks = () => {
   const projects = [
-    {
-      title: "InterVault Bank",
-      description: "A secure online banking platform with user authentication and transaction history.",
-      tags: ["React", "Node.js", "MongoDB", "Express", "JWT", "Tailwind CSS", "Framer Motion"],
-      liveLink: "https://intervault.vercel.app/login",
-      codeLink: "https://github.com/Justmide/InterVault-Bank-Frontend",
-      image: Intervault
-    },
-    {
-      title: "Hearthy Consulting LLC",
-      description: "Professioal spedeveryday website about teachers traiing and special education.",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "Hosting", "cPanel", "SEO"],
-      liveLink: "hearthyconsulting.com",
-      codeLink: "#",
-      image: hearthy
-    },
-    {
-      title: "Cart-plex E-commerce",
-      description: "A modern e-commerce platform with product listings, cart functionality, and user authentication.",
-      tags: ["HTML", "CSS" , "JavaScript", "Firebase", "Firestore"],
-      liveLink: "https://cart-plex.vercel.app/",
-      codeLink: "https://github.com/Justmide/CartPlex",
-      image: CartPlex
-    },
-    {
-      title: "NFTmide Marketplace",
-      description: "A decentralized NFT marketplace with smart contract integration and wallet support.",
-      tags: ["HTML", "CSS", "JavaScript"],
-      liveLink: "https://justmide.github.io/nftMide/",
-      codeLink: "https://github.com/Justmide/nftMide?tab=readme-ov-file",
-      image: NFTmide
-    },
-    {
-      title: "IQ Lounge Menu Price List",
-      description: "A digital menu for a restaurant with interactive features and responsive design. STILL IN PROGRESS",
-      tags: ["React", "Firebase", "Tailwind CSS"],
-      liveLink: "https://iq-hive.vercel.app/",
-      codeLink: "https://github.com/Justmide/lounge-menu",
-      image: LoungeMenu
-    },
-    {
-      title: "ChefBite Food Ordering Website ",
-      description: "A food ordering website with a user-friendly interface and secure payment integration.",
-      tags: ["HTML", "CSS", "JavaScript", "Firebase", "Firestore"],
-      liveLink: "#",
-      codeLink: "#",
-      image: ChefBite
-    },
-  ];
+  {
+    title: "InterVault Bank",
+    description: "Secure online banking.",
+    tags: ["React", "Node.js"],
+    liveLink: "https://intervault.vercel.app/login",
+    codeLink: "https://github.com/Justmide/InterVault-Bank-Frontend",
+    image: Intervault
+  },
+  {
+    title: "Hearthy Consulting LLC",
+    description: "Educational website.",
+    tags: ["React", "Tailwind CSS"],
+    liveLink: "https://hearthyconsulting.com",
+    codeLink: "#",
+    image: hearthy
+  },
+  {
+    title: "Cart-plex E-commerce",
+    description: "E-commerce site.",
+    tags: ["Vanilla JS", "Firebase"],
+    liveLink: "https://cart-plex.vercel.app/",
+    codeLink: "https://github.com/Justmide/CartPlex",
+    image: CartPlex
+  },
+  {
+    title: "NFTmide Marketplace",
+    description: "NFT marketplace.",
+    tags: ["HTML", "CSS"],
+    liveLink: "https://justmide.github.io/nftMide/",
+    codeLink: "https://github.com/Justmide/nftMide?tab=readme-ov-file",
+    image: NFTmide
+  },
+  {
+    title: "IQ Lounge Menu",
+    description: "Interactive digital menu for restaurant (WIP).",
+    tags: ["React", "Firebase"],
+    liveLink: "https://iq-hive.vercel.app/",
+    codeLink: "https://github.com/Justmide/lounge-menu",
+    image: LoungeMenu
+  },
+  {
+    title: "ChefBite Food Ordering Website",
+    description: "Food ordering site.",
+    tags: ["HTML", "CSS"],
+    liveLink: "#",
+    codeLink: "#",
+    image: ChefBite
+  },
+];
 
     // WhatsApp contact function
   const openWhatsApp = () => {
-    const phoneNumber = '07088136059';
+    const phoneNumber = '2347088136059';
     const message = 'Hello! I came across your portfolio and wanted to connect...';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -92,7 +92,7 @@ const ProjectLinks = () => {
 
             {/* Project Content */}
             <div className="p-6">
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-10px lg:text-25px font-bold text-white mb-2">{project.title}</p>
               <p className="text-gray-300 mb-4">{project.description}</p>
               
               {/* Tags */}
@@ -108,7 +108,7 @@ const ProjectLinks = () => {
               </div>
 
               {/* Links */}
-              <div className="flex gap-4">
+              <div className="flex flex-col lg:flex-row md:flex-row sm:flex-row gap-4">
                 <a
                   href={project.liveLink}
                   target="_blank"

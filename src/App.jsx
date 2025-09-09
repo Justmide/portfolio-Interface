@@ -5,6 +5,8 @@ import HomePage from "./Pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Project from "./Pages/Project";
+import ContactUs from "./Pages/ContactUs";
+import Footer from "./Components/Footer";
 
 function App() {
   useEffect(() => {
@@ -17,8 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<Project />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

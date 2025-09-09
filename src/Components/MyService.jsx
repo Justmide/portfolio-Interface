@@ -13,8 +13,8 @@ const MyService = () => {
                 {/* subtext */}
                 <div className="w-full justify-center items-center flex"
                   data-aos='fade-up'>
-                    <p className="lg:w-[70%] md:w-[70%] w-full text-center text-[12px] lg:text-[17px] font-quicksand text-[#c0c4ca] font-extrabold">
-                        I build responsive, scalable full-stack web applications using React, Tailwind, Node.js, and MongoDB. From sleek frontends to secure JWT-authenticated backends, I deliver clean code, smooth animations, and high-standard mobile-ready interfaces. I also offer website hosting, business email setup, and complete solutions that drive real business value.
+                    <p className="lg:w-[70%] md:w-[70%] w-full text-center text-[15px] lg:text-[20px] font-quicksand text-[#c0c4ca] font-extrabold">
+                       I craft fast, scalable web apps with stunning UIs, secure backends, and business-ready solutions.
                     </p>
                 </div>
 

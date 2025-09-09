@@ -21,7 +21,7 @@ const TechStack = () => {
         { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' }
     ];
 
-    // Split techItems into two rows
+    
     const topRowItems = techItems.slice(0, Math.ceil(techItems.length / 2));
     const bottomRowItems = techItems.slice(Math.ceil(techItems.length / 2));
 
@@ -53,23 +53,8 @@ const TechStack = () => {
                 <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-black to-transparent z-10"></div>
             </div>
 
-            {/* Add this to your global CSS or Tailwind config */}
-            <style jsx>{`
-                @keyframes marquee-right {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                }
-                @keyframes marquee-left {
-                    0% { transform: translateX(-50%); }
-                    100% { transform: translateX(0); }
-                }
-                .animate-marquee-right {
-                    animation: marquee-right 20s linear infinite;
-                }
-                .animate-marquee-left {
-                    animation: marquee-left 20s linear infinite;
-                }
-            `}</style>
+         
+           
         </div>
     );
 };

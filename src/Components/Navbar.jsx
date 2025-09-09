@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Add these imports
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import interfaceLogo from '../assets/Images/interface_logo.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // FIX: call useNavigate as a function
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Projects', path: '/projects' },
-    
+    { name: 'Contact', path: '/contact' },
   ];
+
+  const gotoHome = () => {
+    navigate('/');
+  };
+
+  const handleClick = () => {
+    const phoneNumber = '2347088136059';
+    const message = 'Hello! I came across your portfolio and wanted to connect...';
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
 
   return (
     <nav className="lg:px-[60px] w-full fixed top-0 left-0 flex justify-between items-center p-4 bg-black backdrop-blur-lg z-50 border-b border-gray-800 shadow-lg">
@@ -18,9 +30,13 @@ const Navbar = () => {
         <img 
           src={interfaceLogo}
           alt="SkryptByMide Logo"
-          className="h-[90px] w-auto mr-2"
+          className="h-[90px] w-auto mr-2 cursor-pointer"
+          onClick={gotoHome}
         />
-        <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+        <h1 
+          onClick={gotoHome}
+          className="text-xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent cursor-pointer"
+        >
           SkryptByMide
         </h1>
       </div>
@@ -55,7 +71,9 @@ const Navbar = () => {
           </li>
         ))}
         <li>
-          <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
+          <button
+          onClick={handleClick}
+           className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
             Hire Me
           </button>
         </li>
@@ -77,7 +95,9 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <button className="mt-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
+          <button
+          onClick={handleClick}
+           className="mt-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
             Hire Me
           </button>
         </div>
