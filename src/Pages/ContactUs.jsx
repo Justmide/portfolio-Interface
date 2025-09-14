@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { FiSend, FiUser, FiMail, FiMessageSquare, FiPhone } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const ContactUs = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -124,7 +126,6 @@ const ContactUs = () => {
                 <input type="hidden" name="_subject" value="New message from portfolio!" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you" />
                 
                 <div>
                   <div className="relative">
