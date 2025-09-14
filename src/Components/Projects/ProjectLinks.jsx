@@ -1,10 +1,10 @@
 import React from 'react';
 import { FiExternalLink, FiGithub, FiPhone } from 'react-icons/fi';
-import Intervault from '../../assets/Projects/intervault.png';
-import hearthy from '../../assets/Projects/hearthyLLC.png';
-import CartPlex from '../../assets/Projects/cartPlex.png';
-import NFTmide from '../../assets/Projects/NFTmide.png';
-import LoungeMenu from '../../assets/Projects/loungeMenu.png'; 
+import Intervault from '../../assets/Projects/Intervault.png';
+import hearthy from '../../assets/Projects/HearthyLLC.png';
+import CartPlex from '../../assets/Projects/CartPlex.png';
+import Dynamic from '../../assets/Projects/Dynamic.png';
+import LoungeMenu from '../../assets/Projects/LoungeMenu.png'; 
 import ChefBite from '../../assets/Projects/ChefBite.png';
 
 const ProjectLinks = () => {
@@ -34,12 +34,12 @@ const ProjectLinks = () => {
     image: CartPlex
   },
   {
-    title: "NFTmide Marketplace",
-    description: "NFT marketplace.",
-    tags: ["HTML", "CSS"],
-    liveLink: "https://justmide.github.io/nftMide/",
-    codeLink: "https://github.com/Justmide/nftMide?tab=readme-ov-file",
-    image: NFTmide
+    title: "Dynamic cleaning services",
+    description: "Cleaning Services.",
+    tags: ["React", "Talwind", "Nodemailer"],
+    liveLink: "https://dynamiccleaningexpert.co.uk/",
+    codeLink: "https://github.com/justmide",
+    image: Dynamic
   },
   {
     title: "IQ Lounge Menu",

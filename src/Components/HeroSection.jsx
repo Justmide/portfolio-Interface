@@ -1,6 +1,5 @@
 import React, { use } from "react";
-import Me from "../assets/Images/me.png";
-import arrow from "../assets/Images/arrow.png";
+import Me from "../assets/Images/Me.png";
 import { Typewriter } from 'react-simple-typewriter';
 import MyService from "./MyService";
 import PrimaryBtn from "./ButtonStyles/PrimaryBtn";
