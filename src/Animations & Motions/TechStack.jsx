@@ -60,32 +60,29 @@ const TechStack = () => {
 };
 
 const TechItem = ({ tech, index }) => (
-    <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 group mx-4">
-        {/* Glassmorphism Card */}
-        <div className="absolute inset-0 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 
-            group-hover:bg-white/10 transition-all duration-300 ease-out shadow-lg
-            group-hover:shadow-[0_8px_30px_rgba(139,92,246,0.3)] transform">
-        </div>
+  <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 group mx-4 gpu-fix">
+  <div className="absolute inset-0 bg-white/5 sm:backdrop-blur-md rounded-xl border border-white/10 
+    group-hover:bg-white/10 transition-all duration-300 ease-out shadow-md sm:shadow-lg
+    group-hover:shadow-[0_8px_30px_rgba(139,92,246,0.3)] transform">
+  </div>
 
-        {/* Tech Icon */}
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-2">
-            <img
-                src={tech.icon}
-                alt={tech.name}
-                className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain filter drop-shadow-lg 
-                    group-hover:scale-110 transition-transform duration-300"
-            />
-            <span className="text-xs sm:text-sm text-white mt-2 opacity-80 transition-opacity">
-                {tech.name}
-            </span>
-        </div>
+  <div className="relative w-full h-full flex flex-col items-center justify-center p-2">
+    <img
+      src={tech.icon}
+      alt={tech.name}
+      className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 object-contain filter drop-shadow-lg 
+        group-hover:scale-105 transition-transform duration-300"
+    />
+    <span className="text-xs sm:text-sm text-white mt-2 opacity-80 transition-opacity">
+      {tech.name}
+    </span>
+  </div>
 
-        {/* Glow Effect */}
-        <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 
-            bg-gradient-to-br from-purple-500/20 to-pink-500/20 transition-opacity duration-300">
-        </div>
+  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 
+    bg-gradient-to-br from-purple-500/20 to-pink-500/20 transition-opacity duration-300">
+  </div>
+</div>
 
-    </div>
 );
 
 export default TechStack;
