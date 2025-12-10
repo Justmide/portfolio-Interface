@@ -109,11 +109,11 @@ const ContactBox = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-1">Email</h4>
-                  <p className="text-gray-300">contact@skryptbymide.com.ng</p>
+                  <p className="text-gray-300">oyediranolumide97@gmail.com</p>
                 </div>
               </motion.div>
 
-              <motion.div 
+              {/* <motion.div 
                 variants={itemVariants}
                 className="flex items-start gap-4 p-6 bg-black/20 backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
                 whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,0.25)' }}
@@ -121,13 +121,13 @@ const ContactBox = () => {
                 <div className="p-3 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-700/20">
                   <FiPhone className="text-blue-400 text-xl" />
                 </div>
-                <div>
+                {/* <div>
                   <h4 className="font-semibold text-white mb-1">Phone</h4>
                   <p className="text-gray-300 text-sm">+2347088136059</p>
-                </div>
-              </motion.div>
+                </div> */}
+              {/* </motion.div>  */}
 
-              <motion.div 
+              {/* <motion.div 
                 variants={itemVariants}
                 className="flex items-start gap-4 p-6 bg-black/20 backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10"
                 whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,0.25)' }}
@@ -135,11 +135,11 @@ const ContactBox = () => {
                 <div className="p-3 rounded-full bg-gradient-to-br from-pink-500/20 to-pink-700/20">
                   <FiMapPin className="text-pink-400 text-xl" />
                 </div>
-                <div>
+                {/* <div>
                   <h4 className="font-semibold text-white mb-1">Location</h4>
                   <p className="text-gray-300 text-sm">Ibadan, Nigeria</p>
-                </div>
-              </motion.div>
+                </div> */}
+              {/* </motion.div>  */}
             </motion.div>
           </motion.div>
 

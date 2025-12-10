@@ -190,18 +190,18 @@ const Footer = () => {
             <div className="space-y-3 flex flex-col items-center">
               <div className="flex items-start gap-3">
                 <FiMail className="text-purple-400 mt-1 flex-shrink-0" />
-                <a href="mailto:contact@skryptbymide.com" className="text-gray-400 hover:text-white transition-colors">
-                  contact@skryptbymide.com.ng
+                <a href="mailto:oyediranolumide97@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  oyediranolumide97@gmail.com
                 </a>
               </div>
-              <div className="flex items-start gap-3">
+              {/* <div className="flex items-start gap-3">
                 <FiPhone className="text-pink-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">+2347088136059</span>
-              </div>
-              <div className="flex items-start gap-3">
+              </div> */}
+              {/* <div className="flex items-start gap-3">
                 <FiMapPin className="text-purple-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">Ibadan, Nigeria</span>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         </div>
