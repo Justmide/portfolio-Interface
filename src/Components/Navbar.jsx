@@ -1,105 +1,182 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import interfaceLogo from '../assets/Images/interface_logo.png';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate(); // FIX: call useNavigate as a function
+  const navigate = useNavigate();
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Contact', path: '/contact' },
+  const navItems = [
+    { name: 'Home', type: 'route', path: '/' },
+    { name: 'Projects', type: 'route', path: '/projects' },
+    { name: 'Services', type: 'hash', targetId: 'services' },
+    { name: 'Packages', type: 'hash', targetId: 'packages' },
+    { name: 'Contact', type: 'route', path: '/contact' },
   ];
 
-  const gotoHome = () => {
-    navigate('/');
+  const handleNavClick = (item) => {
+    setMenuOpen(false);
+
+    if (item.type === 'route') {
+      navigate(item.path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (item.type === 'hash') {
+      if (location.pathname === '/') {
+        const el = document.getElementById(item.targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate(`/#${item.targetId}`);
+      }
+    }
   };
 
-  const handleClick = () => {
+  const gotoHome = () => {
+    setMenuOpen(false);
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleWhatsApp = () => {
     const phoneNumber = '2347088136059';
-    const message = 'Hello! I came across your portfolio and wanted to connect...';
+    const message = 'Hello Mide! I came across your portfolio and wanted to discuss a website for my business.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
+  const handleTikTok = () => {
+    window.open('https://www.tiktok.com/@skryptbymide', '_blank');
+  };
+
   return (
-    <nav className="lg:px-[60px] w-full fixed top-0 left-0 flex justify-between items-center p-4 bg-black backdrop-blur-lg z-50 border-b border-gray-800 shadow-lg">
-      <div className="flex items-center">
-        <img 
-          src={interfaceLogo}
-          alt="SkryptByMide Logo"
-          className="h-[90px] w-auto mr-2 cursor-pointer"
+    <nav className="w-full fixed top-0 left-0 px-4 sm:px-8 lg:px-14 py-3 bg-black/85 backdrop-blur-xl z-50 border-b border-white/[0.08] shadow-lg shadow-black/80 transition-all">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+
+        {/* Logo only */}
+        <button
+          type="button"
           onClick={gotoHome}
-        />
-        <h1 
-          onClick={gotoHome}
-          className="text-xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent cursor-pointer"
+          aria-label="Go to homepage"
+          className="flex items-center focus:outline-none group flex-shrink-0"
         >
-          SkryptByMide
-        </h1>
+          <img
+            src="/logo.jpeg"
+            alt="Logo"
+            className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </button>
+
+        {/* Desktop Nav Items */}
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex gap-7 items-center">
+            {navItems.map((item) => {
+              const isActive = item.type === 'route' && location.pathname === item.path;
+
+              return (
+                <li key={item.name}>
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick(item)}
+                    className={`relative text-sm font-medium transition-colors duration-200 cursor-pointer ${
+                      isActive ? 'text-white' : 'text-gray-400 hover:text-brand-400'
+                    }`}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <span className="absolute -bottom-1.5 left-0 w-full h-[2px] bg-brand-400 rounded-full shadow-[0_0_8px_#34d399]" />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={handleTikTok}
+              aria-label="Follow on TikTok"
+              title="Follow on TikTok"
+              className="p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-gray-400 hover:text-white transition-all duration-200"
+            >
+              <FaTiktok className="text-sm" />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleWhatsApp}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-500/25"
+            >
+              <FaWhatsapp className="text-base" />
+              <span>Let's Talk</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-white p-2 rounded-lg hover:bg-white/[0.06] transition-colors"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {menuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
+        </button>
       </div>
-      <button
-        className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-all duration-300"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        {menuOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        )}
-      </button>
-      <ul className="hidden md:flex gap-8 items-center">
-        {navLinks.map((link) => (
-          <li key={link.name}>
-            <Link
-              to={link.path}
-              className={`relative text-white/80 hover:text-white transition-colors duration-300 ${
-                location.pathname === link.path ? 'text-white font-medium' : ''
-              }`}
-            >
-              {link.name}
-              {location.pathname === link.path && (
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" />
-              )}
-            </Link>
-          </li>
-        ))}
-        <li>
-          <button
-          onClick={handleClick}
-           className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
-            Hire Me
-          </button>
-        </li>
-      </ul>
-      {/* Mobile Menu */}
+
+      {/* Mobile Drawer */}
       {menuOpen && (
-        <div className="absolute top-[125px] left-0 w-full bg-gray-900/95 backdrop-blur-md text-white flex flex-col gap-4 p-6 md:hidden animate-fadeIn">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`py-3 px-4 rounded-lg transition-all duration-300 ${
-                location.pathname === link.path
-                  ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border-l-4 border-pink-500'
-                  : 'hover:bg-white/10'
-              }`}
-              onClick={() => setMenuOpen(false)}
+        <div className="md:hidden fixed top-[67px] left-0 w-full bg-black/95 backdrop-blur-2xl border-b border-white/[0.08] flex flex-col gap-1 p-6 shadow-2xl animate-fadeIn">
+          {navItems.map((item) => {
+            const isActive = item.type === 'route' && location.pathname === item.path;
+
+            return (
+              <button
+                key={item.name}
+                type="button"
+                onClick={() => handleNavClick(item)}
+                className={`py-3 px-4 rounded-xl text-left font-medium transition-all ${
+                  isActive
+                    ? 'bg-brand-500/10 text-brand-400 border border-brand-500/20'
+                    : 'text-gray-300 hover:bg-white/[0.06] hover:text-white'
+                }`}
+              >
+                {item.name}
+              </button>
+            );
+          })}
+
+          <div className="pt-4 mt-2 border-t border-white/[0.08] flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                handleWhatsApp();
+              }}
+              className="w-full flex items-center justify-center gap-2 py-3.5 bg-brand-500 hover:bg-brand-400 text-white rounded-xl font-bold text-sm transition-all"
             >
-              {link.name}
-            </Link>
-          ))}
-          <button
-          onClick={handleClick}
-           className="mt-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
-            Hire Me
-          </button>
+              <FaWhatsapp className="text-lg" />
+              <span>Let's Talk on WhatsApp</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                handleTikTok();
+              }}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-white rounded-xl font-medium text-sm transition-all"
+            >
+              <FaTiktok className="text-base" />
+              <span>Follow on TikTok (@skryptbymide)</span>
+            </button>
+          </div>
         </div>
       )}
     </nav>

@@ -1,17 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 const Installation = () => {
   return (
-            <div className="mt-12 text-center">
-                <div className="inline-block px-6 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10
-          animate-pulse hover:animate-none hover:bg-white/10 transition-all cursor-pointer">
-                    <span className="text-white font-medium bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                        + cPanel Installation Expert
-                    </span>
-                </div>
-                 </div>
+    <div className="py-6 text-center bg-black">
+      <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-white/30 transition-all cursor-default">
+        <span className="w-2 h-2 rounded-full bg-brand-400"></span>
+        <span className="text-white text-xs sm:text-sm font-medium tracking-wide">
+          cPanel & DirectAdmin Deployment • Custom Business Email Expert
+        </span>
+      </div>
+    </div>
+  );
+};
 
-  )
-}
-
-export default Installation
+export default Installation;

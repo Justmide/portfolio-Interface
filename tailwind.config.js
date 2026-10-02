@@ -2,11 +2,26 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-    fontFamily: {
-    quicksand: ['Quicksand', 'sans-serif'],
-     caveat: ['Caveat', 'cursive'],
-    script: ['Dancing Script', 'cursive'],
-  },
+      colors: {
+        brand: {
+          DEFAULT: '#0044FB',
+          50: '#e6edff',
+          100: '#b3c7ff',
+          200: '#809fff',
+          300: '#4d77ff',
+          400: '#1a5fff',
+          500: '#0044FB',
+          600: '#003ad4',
+          700: '#0030ad',
+          800: '#002686',
+          900: '#001c5f',
+        },
+      },
+      fontFamily: {
+      quicksand: ['Quicksand', 'sans-serif'],
+      caveat: ['Caveat', 'cursive'],
+      script: ['Dancing Script', 'cursive'],
+    },
       animation: {
         fadeIn: 'fadeIn 0.3s ease-out forwards',
         fadeOut: 'fadeOut 0.2s ease-in forwards',

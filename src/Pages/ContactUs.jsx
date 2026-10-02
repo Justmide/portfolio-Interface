@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { FiSend, FiUser, FiMail, FiMessageSquare, FiPhone } from 'react-icons/fi';
+import { FiSend, FiUser, FiMail, FiMessageSquare, FiPhone, FiMapPin, FiClock } from 'react-icons/fi';
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import SEO from '../Components/SEO';
 
 const ContactUs = () => {
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    phone: '',
+    service: 'SME Website',
+    message: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,22 +18,20 @@ const ContactUs = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) 
-      newErrors.name = 'Name is required';
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Invalid email format';
     }
-    if (!formData.message.trim()) 
-      newErrors.message = 'Message is required';
-    
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,173 +44,297 @@ const ContactUs = () => {
     }
   };
 
+  const handleWhatsApp = () => {
+    const phoneNumber = '2347088136059';
+    const message = "Hello Mide! I'd like to get in touch about a website for my business.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
-    <div className="w-full mt-[118px] p-4 bg-gradient-to-b from-black via-[#0f172a] to-black text-white flex flex-col lg:flex-row items-center justify-center px-6 py-10 relative overflow-hidden min-h-screen">
-      {/* Animated Gradient Light Beams */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute w-[400px] h-[400px] bg-pink-500 opacity-20 blur-3xl animate-pulse top-20 left-[-100px] rounded-full" />
-        <div className="absolute w-[300px] h-[300px] bg-purple-600 opacity-20 blur-2xl animate-pulse delay-200 top-[60%] right-[-100px] rounded-full" />
+    <>
+      <SEO title="SkryptByMide | Contact" description="Contact Olumide Oyediran for a fast, mobile-first website. Based in Ibadan, serving clients worldwide. WhatsApp, email, and project brief form available." path="/contact" />
+      <div className="w-full mt-[75px] pt-12 pb-20 bg-gradient-to-b from-black/90 via-[#090a0f]/90 to-black/90 text-white flex flex-col items-center justify-center px-4 sm:px-8 lg:px-14 relative min-h-screen">
+      
+      {/* Background accents (No pink) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-80px] left-1/3 w-[500px] h-[300px] bg-white/[0.03] rounded-full blur-[100px]" />
       </div>
 
-      {/* Left Side - Contact Info */}
-      <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full lg:w-1/2 p-8 flex flex-col items-center justify-center z-10 mb-10 lg:mb-0"
-      >
-        <div className="text-center lg:text-left max-w-md">
-          <h2 className="text-[20px] lg:text-4xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Let's Build Something Amazing
-          </h2>
-          <p className="text-gray-300 mb-8 text-[16px]">
-            Whether you have a project in mind or just want to chat about tech, I'd love to hear from you.
+      <div className="max-w-6xl w-full mx-auto relative z-10">
+        
+        {/* Page Header */}
+        <div className="text-center mb-12" data-aos="fade-down">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-medium mb-3">
+            <span className="w-2 h-2 rounded-full bg-brand-400 animate-pulse" />
+            <span>Direct Communication</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-3">
+            Get in Touch With Mide
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto font-quicksand">
+            Have a project in mind, need a quote, or want to modernize your company's online presence? I reply promptly.
           </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-full bg-purple-500/20">
-                <FiPhone className="text-purple-400 text-xl" />
+          {/* Left Column: Direct Contact Info & Fast WhatsApp Option */}
+          <div className="lg:col-span-5 space-y-6" data-aos="fade-right">
+            
+            {/* Instant WhatsApp Card */}
+            <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-400 mb-2">
+                <FaWhatsapp className="text-base" />
+                <span>Fastest Response Channel</span>
               </div>
-              <div>
-                <p className="text-gray-400 text-sm">Call me at</p>
-                <p className="text-white">+2347088136059</p>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Prefer Instant Chat?
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-quicksand mb-5">
+                Nigerian business owners usually prefer quick WhatsApp updates. Send a direct message and let's get your questions answered.
+              </p>
+              <button
+                type="button"
+                onClick={handleWhatsApp}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm shadow-md transition-all duration-200"
+              >
+                <FaWhatsapp className="text-lg" />
+                <span>Chat on WhatsApp (+234 708 813 6059)</span>
+              </button>
+              <div className="flex items-center justify-center gap-2 text-[11px] text-gray-400 mt-3">
+                <FiClock className="text-brand-400" />
+                <span>Usually replies within a few hours on WhatsApp</span>
               </div>
             </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-full bg-pink-500/20">
-                <FiMail className="text-pink-400 text-xl" />
+
+            {/* Contact Details List */}
+            <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                  <FiMail className="text-lg" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-gray-400">Official Brand Email</p>
+                  <a href="mailto:oyediranolumide97@gmail.com" className="text-sm font-semibold text-white hover:text-brand-400 transition-colors">
+                    oyediranolumide97@gmail.com
+                  </a>
+                </div>
               </div>
-              <div>
-                <p className="text-gray-400 text-sm">Email me at</p>
-                <p className="text-white">info@skryptbymide.com</p>
+
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                  <FiPhone className="text-lg" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-gray-400">Direct Phone Line</p>
+                  <p className="text-sm font-semibold text-white">
+                    +234 708 813 6059
+                  </p>
+                </div>
               </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                  <FiMapPin className="text-lg" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-gray-400">Headquarters</p>
+                  <p className="text-sm font-semibold text-white">
+                    Ibadan, Nigeria · Full-Stack Web Development
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                  <FaTiktok className="text-lg" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-wider text-gray-400">TikTok</p>
+                  <a 
+                    href="https://www.tiktok.com/@skryptbymide" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sm font-semibold text-white hover:text-gray-300 transition-colors"
+                  >
+                    @skryptbymide
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Contact & Project Request Form */}
+          <div className="lg:col-span-7" data-aos="fade-left">
+            <div className="p-7 sm:p-9 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl shadow-2xl">
+              {isSuccess ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-brand-500/30 text-brand-400 text-2xl">
+                    ✓
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+                  <p className="text-gray-400 text-sm max-w-sm mx-auto mb-6">
+                     Thank you. Your inquiry has been sent to oyediranolumide97@gmail.com. I will review it and reply shortly.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleWhatsApp}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 text-white font-semibold text-xs"
+                  >
+                    <FaWhatsapp />
+                    <span>Also Follow Up on WhatsApp</span>
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-bold text-white mb-1">Send a Detailed Project Brief</h3>
+                  <p className="text-xs text-gray-400 mb-6">
+                    Fill out the form below and it will be sent directly to my business email.
+                  </p>
+
+                  <form
+                    action="https://formsubmit.co/oyediranolumide97@gmail.com"
+                    method="POST"
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    {/* FormSubmit Configuration */}
+                    <input type="hidden" name="_subject" value="New Business Website Inquiry - SkryptByMide" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_next" value="https://skryptbymidey.vercel.app/thankYou" />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Name */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-300 mb-1.5">Your Full Name *</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                            <FiUser />
+                          </div>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="e.g. Tunde Adeyemi"
+                            required
+                            className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.04] border ${errors.name ? 'border-red-500' : 'border-white/10'} text-white placeholder-gray-500 text-sm focus:outline-none focus:border-white transition-colors`}
+                          />
+                        </div>
+                        {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
+                      </div>
+
+                      {/* Email */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-300 mb-1.5">Email Address *</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                            <FiMail />
+                          </div>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="e.g. tunde@company.com"
+                            required
+                            className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.04] border ${errors.email ? 'border-red-500' : 'border-white/10'} text-white placeholder-gray-500 text-sm focus:outline-none focus:border-white transition-colors`}
+                          />
+                        </div>
+                        {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Phone / WhatsApp */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-300 mb-1.5">Phone / WhatsApp Number</label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                            <FiPhone />
+                          </div>
+                          <input
+                            type="text"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="e.g. +234 801 234 5678"
+                            className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-white transition-colors"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Service Category */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-300 mb-1.5">Service Needed</label>
+                        <select
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 rounded-xl bg-[#12141c] border border-white/10 text-white text-sm focus:outline-none focus:border-white transition-colors"
+                        >
+                          <option value="SME Business Website">SME Business Website</option>
+                          <option value="Logistics Website">Logistics / Transport Website</option>
+                          <option value="School / Hotel Portal">School / Hotel / Hospitality Website</option>
+                          <option value="E-Commerce / Online Store">E-Commerce / Online Store</option>
+                          <option value="Website Redesign & Speed Optimization">Website Redesign & Speed Optimization</option>
+                          <option value="cPanel & Business Email Setup">cPanel & Business Email Setup</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label className="block text-xs font-medium text-gray-300 mb-1.5">Project Details / Message *</label>
+                      <div className="relative">
+                        <div className="absolute top-3.5 left-3.5 pointer-events-none text-gray-400">
+                          <FiMessageSquare />
+                        </div>
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows="4"
+                          placeholder="Tell me about your business, what pages or features you need, and any launch target date..."
+                          required
+                          className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.04] border ${errors.message ? 'border-red-500' : 'border-white/10'} text-white placeholder-gray-500 text-sm focus:outline-none focus:border-white transition-colors`}
+                        ></textarea>
+                      </div>
+                      {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-white hover:bg-gray-200 text-white font-bold text-sm shadow-md transition-all duration-200 mt-2 disabled:opacity-50"
+                    >
+                      {isSubmitting ? (
+                        <span>Sending Inquiry...</span>
+                      ) : (
+                        <>
+                          <FiSend className="text-base" />
+                           <span>Submit Message to oyediranolumide97@gmail.com</span>
+                        </>
+                      )}
+                    </button>
+
+                    <p className="text-[11px] text-gray-400 text-center pt-2">
+                      🔒 Your details are 100% private. Usually replies within a few hours on WhatsApp.
+                    </p>
+                  </form>
+                </>
+              )}
             </div>
           </div>
+
         </div>
-      </motion.div>
 
-      {/* Right Side - Contact Form */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full lg:w-1/2 p-2 lg:p-8 flex justify-center z-10"
-      >
-        <div className="w-full max-w-md bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 p-3 lg:p-8 shadow-xl">
-          {isSuccess ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-8"
-            >
-              <div className="w-20 h-20 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
-                <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Message Sent!</h3>
-              <p className="text-gray-400">I'll get back to you within 24 hours.</p>
-            </motion.div>
-          ) : (
-            <>
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">Send Me a Message</h3>
-              <form 
-                action="https://formsubmit.co/oyediranolumide97@gmail.com" 
-                method="POST"
-                onSubmit={handleSubmit}
-                className="space-y-6"
-              >
-                {/* FormSubmit Hidden Fields */}
-                <input type="hidden" name="_subject" value="New message from portfolio!" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
-                
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiUser className="text-gray-500" />
-                    </div>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your Name"
-                      required
-                      className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.name ? 'border-red-500/50' : 'border-gray-700'} focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-500`}
-                    />
-                  </div>
-                  {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
-                </div>
-
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiMail className="text-gray-500" />
-                    </div>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Your Email"
-                      required
-                      className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.email ? 'border-red-500/50' : 'border-gray-700'} focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-500`}
-                    />
-                  </div>
-                  {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
-                </div>
-
-                <div>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pt-3 pl-3 flex items-start pointer-events-none">
-                      <FiMessageSquare className="text-gray-500" />
-                    </div>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows="4"
-                      placeholder="Your Message"
-                      required
-                      className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.message ? 'border-red-500/50' : 'border-gray-700'} focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-500`}
-                    ></textarea>
-                  </div>
-                  {errors.message && <p className="mt-1 text-sm text-red-400">{errors.message}</p>}
-                </div>
-
-                <div>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <FiSend className="mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </motion.button>
-                </div>
-              </form>
-            </>
-          )}
-        </div>
-      </motion.div>
+      </div>
     </div>
+    </>
   );
 };
 

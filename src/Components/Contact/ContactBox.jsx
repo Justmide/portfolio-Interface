@@ -1,209 +1,149 @@
-import React, { useEffect } from 'react';
-import { FiMail, FiPhone, FiMapPin, FiArrowRight, FiMessageSquare } from 'react-icons/fi';
+import React from 'react';
+import { FiMail, FiMapPin, FiArrowRight, FiMessageSquare, FiClock } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 const ContactBox = () => {
   const navigate = useNavigate();
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false
-  });
 
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 10
-      }
-    }
-  };
-
-  const buttonVariants = {
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 10px 25px -5px rgba(192, 132, 252, 0.4)',
-      transition: {
-        duration: 0.3
-      }
-    },
-    tap: {
-      scale: 0.98
-    }
+  const handleWhatsApp = () => {
+    const phoneNumber = '2347088136059';
+    const message = "Hello Mide! I'd like to inquire about building a website for my business.";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
   };
 
   return (
-    <div 
-      ref={ref}
-      className="w-full bg-gradient-to-br from-gray-900 to-black py-5 px-4 sm:px-8 lg:px-6 overflow-hidden relative"
-    >
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
-      >
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-600 blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-72 h-72 rounded-full bg-pink-600 blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 rounded-full bg-blue-500 blur-3xl opacity-15 animate-pulse delay-500"></div>
-      </motion.div>
+    <section className="w-full py-20 px-4 sm:px-8 lg:px-14 bg-black/90 relative overflow-hidden" id="contact-cta">
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-brand-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={containerVariants}
-          className="flex flex-col lg:flex-row items-center justify-between gap-12"
-        >
-          {/* Left Side - Contact Info */}
-          <motion.div 
-            variants={itemVariants}
-            className="w-full lg:w-2/5"
-          >
-            <motion.h2 
-              className="text-[18px] text-center lg:text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-pink-500 bg-clip-text text-transparent mb-8"
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.6 }}
-            >
-              Let's Create Something Extraordinary Together
-            </motion.h2>
-            
-            <motion.div 
-              className="grid grid-cols-1 gap-6"
-              variants={containerVariants}
-            >
-              <motion.div 
-                variants={itemVariants}
-                className="flex items-start gap-4 p-6 bg-black/20 backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10"
-                whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,0.25)' }}
-              >
-                <div className="p-3 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-700/20">
-                  <FiMail className="text-purple-400 text-xl" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">Email</h4>
-                  <p className="text-gray-300">oyediranolumide97@gmail.com</p>
-                </div>
-              </motion.div>
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-14" data-aos="fade-up">
+          <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-brand-400 mb-4">
+            Get In Touch
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 tracking-tight" data-aos="fade-up" data-aos-delay="60">
+            Let's Build Something That Works
+          </h2>
+          <p className="text-base sm:text-lg text-gray-200 max-w-xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="120">
+            Based in Ibadan, working with businesses worldwide. Ready when you are.
+          </p>
+        </div>
 
-              {/* <motion.div 
-                variants={itemVariants}
-                className="flex items-start gap-4 p-6 bg-black/20 backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
-                whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,0.25)' }}
-              >
-                <div className="p-3 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-700/20">
-                  <FiPhone className="text-blue-400 text-xl" />
-                </div>
-                {/* <div>
-                  <h4 className="font-semibold text-white mb-1">Phone</h4>
-                  <p className="text-gray-300 text-sm">+2347088136059</p>
-                </div> */}
-              {/* </motion.div>  */}
-
-              {/* <motion.div 
-                variants={itemVariants}
-                className="flex items-start gap-4 p-6 bg-black/20 backdrop-blur-md rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10"
-                whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,0.25)' }}
-              >
-                <div className="p-3 rounded-full bg-gradient-to-br from-pink-500/20 to-pink-700/20">
-                  <FiMapPin className="text-pink-400 text-xl" />
-                </div>
-                {/* <div>
-                  <h4 className="font-semibold text-white mb-1">Location</h4>
-                  <p className="text-gray-300 text-sm">Ibadan, Nigeria</p>
-                </div> */}
-              {/* </motion.div>  */}
-            </motion.div>
-          </motion.div>
-
-          {/* Divider - Subtle gradient line */}
-          <div className="hidden lg:block h-80 w-px bg-gradient-to-b from-transparent via-purple-500/30 to-transparent"></div>
-
-          {/* Right Side - CTA */}
-          <motion.div 
-            variants={itemVariants}
-            className="w-full lg:w-2/5 flex flex-col items-center lg:items-start gap-8"
-          >
-            <motion.h3 
-              className="text-2xl font-bold text-white text-center lg:text-left"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* LEFT — Contact Details (60%) */}
+          <div className="lg:col-span-3 space-y-3">
+            {/* Email */}
+            <a
+              href="mailto:oyediranolumide97@gmail.com"
+              className="group flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md hover:border-brand-500/50 hover:bg-white/[0.08] transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay="150"
             >
-              Ready to Start Your Project?
-            </motion.h3>
-            
-            <motion.p 
-              className="text-lg text-gray-300 text-center lg:text-left leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                <FiMail className="text-base" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-mono uppercase tracking-wider text-gray-300 mb-0.5">
+                  Email
+                </p>
+                <p className="text-sm sm:text-base font-semibold text-white truncate">
+                 oyediranolumide97@gmail.com
+                </p>
+              </div>
+              <FiArrowRight className="text-gray-300 group-hover:text-brand-400 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/2347088136059"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md hover:border-brand-500/50 hover:bg-white/[0.08] transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay="210"
             >
-              Have an idea you want to bring to life or need expert consultation? Let's discuss how we can turn your vision into reality.
-            </motion.p>
-            
-            <motion.div
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="w-full mt-4"
-            >
-              <button
-                onClick={() => navigate('/contact')}
-                className="group relative w-full px-4 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-xl overflow-hidden shadow-lg shadow-purple-500/20"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  <FiMessageSquare className="text-lg" />
-                  Start Conversation
-                  <FiArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 transition-transform duration-300">
+                <FaWhatsapp className="text-base" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-mono uppercase tracking-wider text-gray-300 mb-0.5">
+                  WhatsApp &amp; Phone
+                </p>
+                <p className="text-sm sm:text-base font-semibold text-white truncate">
+                  +234 708 813 6059
+                </p>
+              </div>
+              <FiArrowRight className="text-gray-300 group-hover:text-brand-400 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+            </a>
+
+            {/* Location */}
+            <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md" data-aos="fade-up" data-aos-delay="270">
+              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-gray-300">
+                <FiMapPin className="text-base" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-mono uppercase tracking-wider text-gray-300 mb-0.5">
+                  Location
+                </p>
+                <p className="text-sm sm:text-base font-semibold text-white">
+                  Ibadan, Nigeria · Serving Clients Worldwide
+                </p>
+              </div>
+            </div>
+
+            {/* Response time */}
+            <div className="flex items-center gap-2 px-1 pt-2 text-xs text-gray-300" data-aos="fade-up" data-aos-delay="300">
+              <FiClock className="text-brand-400 text-sm" />
+              <span>Usually replies within a few hours on WhatsApp</span>
+            </div>
+          </div>
+
+          {/* RIGHT — Action Card (40%) */}
+          <div className="lg:col-span-2" data-aos="fade-up" data-aos-delay="180">
+            <div className="flex flex-col h-full p-7 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md">
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-mono uppercase tracking-wider mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
+                  Available Now
                 </span>
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ opacity: 0 }}
-                />
-              </button>
-            </motion.div>
+                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
+                  Fastest Way to Start
+                </h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  Skip the long back-and-forth. Message me directly with your project brief.
+                </p>
+              </div>
 
-            <motion.div 
-              className="mt-4 flex items-center gap-3 text-gray-400"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div className="h-px w-8 bg-gradient-to-r from-transparent to-gray-600/50"></div>
-              <span className="text-[12px] lg:text-[15px]">Usually responds within 24 hours</span>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+              <div className="flex flex-col gap-3 mt-auto">
+                {/* Primary WhatsApp CTA */}
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-500/25"
+                >
+                  <FaWhatsapp className="text-base" />
+                  <span>Chat on WhatsApp</span>
+                </button>
+
+                {/* Secondary form link */}
+                <button
+                  type="button"
+                  onClick={() => navigate('/contact')}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-full bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] text-white font-semibold text-sm transition-all duration-300"
+                >
+                  <FiMessageSquare className="text-sm" />
+                  <span>Send Detailed Brief</span>
+                  <FiArrowRight className="text-xs" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

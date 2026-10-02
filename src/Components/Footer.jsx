@@ -1,232 +1,302 @@
 import React from 'react';
-import { 
-  FiGithub, 
-  FiTwitter, 
-  FiLinkedin, 
-  FiMail, 
+import {
+  FiGithub,
+  FiTwitter,
+  FiLinkedin,
+  FiMail,
   FiArrowUp,
-  FiPhone, 
-  FiMapPin
+  FiPhone,
+  FiMapPin,
 } from 'react-icons/fi';
-import { motion } from 'framer-motion';
-import logo from '../assets/Images/interface_logo.png'
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNav = (target, type = 'route') => {
+    if (type === 'route') {
+      navigate(target);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (type === 'hash') {
+      if (location.pathname === '/') {
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate(`/#${target}`);
+      }
+    }
+  };
+
+  const handleWhatsApp = (topic = 'General Inquiry') => {
+    const phoneNumber = '2347088136059';
+    const message = `Hello Mide! I am inquiring about ${topic} for my business.`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
   return (
-    <footer className="w-full bg-gradient-to-b from-[#0f172a] to-black text-white pt-5 pb-8 px-4 sm:px-8 lg:px-16 border-t border-gray-800 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div 
-          className="absolute bottom-0 left-1/4 w-64 h-64 rounded-full bg-purple-600 blur-3xl opacity-20"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: 'reverse'
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-0 right-1/3 w-72 h-72 rounded-full bg-pink-600 blur-3xl opacity-20"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.25, 0.2]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            delay: 2
-          }}
-        />
-      </div>
+    <footer
+      className="w-full bg-black text-white pt-16 pb-12 px-4 sm:px-8 lg:px-14 border-t border-white/[0.08] relative overflow-hidden"
+      id="footer"
+    >
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[160px] bg-brand-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
-          {/* Brand Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-4 flex flex-col items-center"
-          >
-            <h3 className="flex flex-col items-center text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-              <img 
-                src={logo}
-                className="w-[70px] mb-2" 
-                alt="" 
+        {/* Top 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
+
+          {/* Column 1: Brand & Bio */}
+          <div className="lg:col-span-5 space-y-4">
+            {/* Logo only */}
+            <button
+              type="button"
+              onClick={() => handleNav('/', 'route')}
+              className="group flex items-center focus:outline-none select-none"
+              aria-label="Go to homepage"
+            >
+              <img
+                src="/logo.jpeg"
+                alt="Logo"
+                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
-              <p>SkryptByMide</p>
-            </h3>
-            <p className="text-gray-400">
-              Crafting digital experiences that inspire and deliver results.
+            </button>
+
+            <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-quicksand">
+              Based in Ibadan · Helping Nigerian &amp; international businesses build
+              high-converting websites and modern digital systems that bring real revenue.
             </p>
-            <div className="flex space-x-4 justify-center">
-              <motion.a 
-                href="https://github.com/justmmide" 
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href="https://wa.me/2347088136059"
                 target="_blank"
-                whileHover={{ y: -3 }}
-                className="text-gray-400 hover:text-purple-400 transition-colors"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                title="Chat on WhatsApp"
+                className="w-9 h-9 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 hover:bg-brand-500 hover:text-white flex items-center justify-center transition-all duration-200"
               >
-                <FiGithub className="w-5 h-5" />
-              </motion.a>
-              <motion.a 
-                href="https://twitter.com/yourusername" 
+                <FaWhatsapp className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@skryptbymide"
                 target="_blank"
-                whileHover={{ y: -3 }}
-                className="text-gray-400 hover:text-blue-400 transition-colors"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                title="Follow on TikTok"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
               >
-                <FiTwitter className="w-5 h-5" />
-              </motion.a>
-              <motion.a 
-                href="https://linkedin.com/in/interface-i-b15357253" 
+                <FaTiktok className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/justmide"
                 target="_blank"
-                whileHover={{ y: -3 }}
-                className="text-gray-400 hover:text-blue-500 transition-colors"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                title="GitHub Repositories"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
               >
-                <FiLinkedin className="w-5 h-5" />
-              </motion.a>
-              <motion.a 
-                href="mailto:contact@skryptbymide.com" 
-                whileHover={{ y: -3 }}
-                className="text-gray-400 hover:text-pink-400 transition-colors"
+                <FiGithub className="w-4 h-4" />
+              </a>
+              <a
+                href="https://linkedin.com/in/interface-i-b15357253"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                title="Connect on LinkedIn"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
               >
-                <FiMail className="w-5 h-5" />
-              </motion.a>
+                <FiLinkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://twitter.com/skryptbymide"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter / X"
+                title="Follow on X"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
+              >
+                <FiTwitter className="w-4 h-4" />
+              </a>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="space-y-4 flex flex-col items-center"
-          >
-            <h4 className="text-lg font-semibold text-white">Quick Links</h4>
-            <ul className="space-y-3 flex flex-col items-center">
+          {/* Column 2: Navigation */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs uppercase tracking-widest text-gray-400 font-mono font-semibold mb-3">
+              Navigation
+            </h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <motion.a 
-                  href="/" 
-                  whileHover={{ x: 5 }}
-                  className="text-gray-400 hover:text-white transition-colors flex items-center"
+                <button
+                  type="button"
+                  onClick={() => handleNav('/', 'route')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
                 >
-                  <span className="w-1 h-1 bg-purple-500 rounded-full mr-2"></span>
                   Home
-                </motion.a>
+                </button>
               </li>
               <li>
-                <motion.a 
-                  href="/projects" 
-                  whileHover={{ x: 5 }}
-                  className="text-gray-400 hover:text-white transition-colors flex items-center"
+                <button
+                  type="button"
+                  onClick={() => handleNav('/projects', 'route')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
                 >
-                  <span className="w-1 h-1 bg-pink-500 rounded-full mr-2"></span>
-                  Projects
-                </motion.a>
+                  Projects &amp; Demos
+                </button>
               </li>
               <li>
-                <motion.a 
-                  href="/contact" 
-                  whileHover={{ x: 5 }}
-                  className="text-gray-400 hover:text-white transition-colors flex items-center"
+                <button
+                  type="button"
+                  onClick={() => handleNav('services', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
                 >
-                  <span className="w-1 h-1 bg-pink-500 rounded-full mr-2"></span>
-                  Contact
-                </motion.a>
+                  SME Services
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('packages', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  Starting Packages
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('/contact', 'route')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  Contact Me
+                </button>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-4 flex flex-col items-center"
-          >
-            <h4 className="text-lg font-semibold text-white">Tech Stack</h4>
-            <ul className="space-y-3 flex flex-col items-center">
-              <li className="text-gray-400 flex items-center">
-                <span className="w-1 h-1 bg-purple-500 rounded-full mr-2"></span>
-                React & Next.js
+          {/* Column 3: Capabilities */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs uppercase tracking-widest text-gray-400 font-mono font-semibold mb-3">
+              Capabilities
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('services', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  SME Web Development
+                </button>
               </li>
-              <li className="text-gray-400 flex items-center">
-                <span className="w-1 h-1 bg-pink-500 rounded-full mr-2"></span>
-                Tailwind CSS
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleWhatsApp('WhatsApp Lead Integration')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  WhatsApp Lead Funnels
+                </button>
               </li>
-              <li className="text-gray-400 flex items-center">
-                <span className="w-1 h-1 bg-purple-500 rounded-full mr-2"></span>
-                Node.js
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('services', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  Business Email Setup
+                </button>
               </li>
-              <li className="text-gray-400 flex items-center">
-                <span className="w-1 h-1 bg-pink-500 rounded-full mr-2"></span>
-                MongoDB
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('services', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  Local Google SEO
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('services', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  E-Commerce Paystack
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleWhatsApp('cPanel and Hosting')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  cPanel &amp; SSL Support
+                </button>
               </li>
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="space-y-4 flex flex-col items-center"
-          >
-            <h4 className="text-lg font-semibold text-white">Get In Touch</h4>
-            <div className="space-y-3 flex flex-col items-center">
-              <div className="flex items-start gap-3">
-                <FiMail className="text-purple-400 mt-1 flex-shrink-0" />
-                <a href="mailto:oyediranolumide97@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+          {/* Column 4: Contact */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs uppercase tracking-widest text-gray-400 font-mono font-semibold mb-3">
+              Direct Comms
+            </h4>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2.5">
+                <FiMail className="text-brand-400 mt-1 flex-shrink-0" />
+                <a
+                  href="mailto:oyediranolumide97@gmail.com"
+                  className="text-gray-300 hover:text-brand-400 transition-colors break-all"
+                >
                   oyediranolumide97@gmail.com
                 </a>
               </div>
-              {/* <div className="flex items-start gap-3">
-                <FiPhone className="text-pink-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+2347088136059</span>
-              </div> */}
-              {/* <div className="flex items-start gap-3">
-                <FiMapPin className="text-purple-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">Ibadan, Nigeria</span>
-              </div> */}
+              <div className="flex items-start gap-2.5">
+                <FiPhone className="text-brand-400 mt-1 flex-shrink-0" />
+                <a
+                  href="tel:+2347088136059"
+                  className="text-gray-300 hover:text-brand-400 transition-colors"
+                >
+                  +234 708 813 6059
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <FiMapPin className="text-brand-400 mt-1 flex-shrink-0" />
+                <span className="text-gray-400">
+                  Ibadan, Nigeria · Operating Globally
+                </span>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-gray-500 text-sm mb-4 md:mb-0"
-          >
-            © {new Date().getFullYear()} SkryptByMide. All rights reserved.
-          </motion.p>
+        <div className="border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+          <p className="font-mono text-center sm:text-left">
+            © {new Date().getFullYear()} SKRYPT VOLT · Mission Control Ibadan · All Systems Operational.
+          </p>
 
-          <motion.button
+          <button
+            type="button"
             onClick={scrollToTop}
-            whileHover={{ y: -3 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-gray-400 hover:text-brand-400 transition-colors font-mono cursor-pointer"
           >
-            Back to top
-            <FiArrowUp className="text-purple-400" />
-          </motion.button>
+            <span>Ascend to Orbit</span>
+            <FiArrowUp className="text-sm" />
+          </button>
         </div>
       </div>
     </footer>

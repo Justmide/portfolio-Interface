@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /thankYou
+
+Sitemap: https://skryptbymidey.vercel.app/sitemap.xml

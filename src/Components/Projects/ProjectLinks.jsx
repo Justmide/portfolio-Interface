@@ -1,146 +1,230 @@
-import React from 'react';
-import { FiExternalLink, FiGithub, FiPhone } from 'react-icons/fi';
-import Intervault from '../../assets/Projects/Intervault.png';
-import hearthy from '../../assets/Projects/HearthyLLC.png';
-import CartPlex from '../../assets/Projects/CartPlex.png';
-import Dynamic from '../../assets/Projects/Dynamic.png';
-import LoungeMenu from '../../assets/Projects/LoungeMenu.png'; 
-import ChefBite from '../../assets/Projects/ChefBite.png';
+import React, { useRef, useState } from 'react';
+import { FiExternalLink, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const ProjectLinks = () => {
-  const projects = [
-  {
-    title: "InterVault Bank",
-    description: "Secure online banking.",
-    tags: ["React", "Node.js"],
-    liveLink: "https://intervault.vercel.app/login",
-    codeLink: "https://github.com/Justmide/InterVault-Bank-Frontend",
-    image: Intervault
-  },
-  {
-    title: "Hearthy Consulting LLC",
-    description: "Educational website.",
-    tags: ["React", "Tailwind CSS"],
-    liveLink: "https://hearthyconsulting.com",
-    codeLink: "#",
-    image: hearthy
-  },
-  {
-    title: "Cart-plex E-commerce",
-    description: "E-commerce site.",
-    tags: ["Vanilla JS", "Firebase"],
-    liveLink: "https://cart-plex.vercel.app/",
-    codeLink: "https://github.com/Justmide/CartPlex",
-    image: CartPlex
-  },
-  {
-    title: "Dynamic cleaning services",
-    description: "Cleaning Services.",
-    tags: ["React", "Talwind", "Nodemailer"],
-    liveLink: "https://dynamiccleaningexpert.co.uk/",
-    codeLink: "https://github.com/justmide",
-    image: Dynamic
-  },
-  {
-    title: "IQ Lounge Menu",
-    description: "Interactive digital menu for restaurant (WIP).",
-    tags: ["React", "Firebase"],
-    liveLink: "https://iq-hive.vercel.app/",
-    codeLink: "https://github.com/Justmide/lounge-menu",
-    image: LoungeMenu
-  },
-  {
-    title: "ChefBite Food Ordering Website",
-    description: "Food ordering site.",
-    tags: ["HTML", "CSS"],
-    liveLink: "#",
-    codeLink: "#",
-    image: ChefBite
-  },
-];
+  const scrollRef = useRef(null);
+  const [loaded, setLoaded] = useState({});
 
-    // WhatsApp contact function
-  const openWhatsApp = () => {
+  // WordPress mShots — free, cached, no API key, fast.
+  const getPreview = (url) =>
+    `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=800&h=500`;
+
+  const projects = [
+    {
+      title: 'Adetunji Babajide & Co.',
+      resultNote:
+        'Chartered accountants (ICAN & CITN, est. 2009) covering audit, tax & advisory — built for corporate trust and client acquisition.',
+      tags: ['Corporate', 'Audit & Tax', 'Professional Services'],
+      liveLink: 'https://adetunjibabajideandco.com',
+      category: 'Professional Services',
+    },
+    {
+      title: 'SkyBridge Pathways Global',
+      resultNote:
+        'Logistics & delivery platform for Ibadan-to-worldwide shipping — real-time tracking, hub network, 99.2% on-time delivery.',
+      tags: ['Logistics', 'Tracking UI', 'Mobile-First'],
+      liveLink: 'https://skybridgepathwayglobal.com',
+      category: 'Logistics & Delivery',
+    },
+    {
+      title: 'E-Travel Agent (SkyBridge)',
+      resultNote:
+        'UK-registered visa consultancy — 98% success rate, 12k+ visas processed, end-to-end immigration services across 50+ countries.',
+      tags: ['Travel', 'Visa & Immigration', 'Conversion Funnel'],
+      liveLink: 'https://e-travelagent.co.uk',
+      category: 'Travel & Immigration',
+    },
+    {
+      title: 'SpedEveryday Autism Support',
+      resultNote:
+        'U.S.-trained autism parent coaching & screening — 500+ families supported, 98% satisfaction, culturally responsive care.',
+      tags: ['Healthcare', 'Coaching', 'Community'],
+      liveLink: 'https://spedeveryday.com',
+      category: 'Healthcare & Coaching',
+    },
+    {
+      title: 'Dynamic Cleaning Services',
+      resultNote:
+        'UK commercial & domestic cleaning company — focused on instant quote requests and booking conversions.',
+      tags: ['Service Funnel', 'Booking', 'SME Site'],
+      liveLink: 'https://dynamiccleaningexpert.co.uk/',
+      category: 'SME Commercial Site',
+    },
+  ];
+
+  const scroll = (direction) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const amount = container.clientWidth * 0.85;
+    container.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
+  };
+
+  const openWhatsApp = (title) => {
     const phoneNumber = '2347088136059';
-    const message = 'Hello! I came across your portfolio and wanted to connect...';
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    const message = title
+      ? `Hello Mide! I'm interested in a website like your "${title}" project for my business.`
+      : "Hello Mide! I looked through your recent client projects and I'd like to build something similar for my business.";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
-    <div className="w-full py-16 px-4 sm:px-8 lg:px-16 ">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-12">
-        <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-          My Projects
-        </span>
-      </h2>
+    <section className="w-full py-24 px-4 sm:px-8 lg:px-14 bg-black/90 relative overflow-hidden" id="projects">
+      <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-brand-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <div 
-            key={index}
-            className="relative group overflow-hidden rounded-xl bg-gray-800 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20"
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16" data-aos="fade-up">
+          <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-brand-400 mb-4">
+            Selected Work
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 tracking-tight">
+            Projects That Drive Results
+          </h2>
+          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
+            Real client sites across accounting, logistics, travel, and healthcare — built to convert.
+          </p>
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="flex items-center justify-end gap-2 mb-8">
+          <button
+            onClick={() => scroll('left')}
+            aria-label="Scroll left"
+            className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all"
           >
-            {/* Project Image */}
-            <div className="h-48 overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+            <FiChevronLeft className="text-lg" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            aria-label="Scroll right"
+            className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all"
+          >
+            <FiChevronRight className="text-lg" />
+          </button>
+        </div>
 
-            {/* Project Content */}
-            <div className="p-6">
-              <p className="text-10px lg:text-25px font-bold text-white mb-2">{project.title}</p>
-              <p className="text-gray-300 mb-4">{project.description}</p>
-              
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag, i) => (
-                  <span 
-                    key={i}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-gray-700 text-purple-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex flex-col lg:flex-row md:flex-row sm:flex-row gap-4">
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-                >
-                  <FiExternalLink /> Live Demo
-                </a>
-                <a
-                  href={project.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition-colors"
-                >
-                  <FiGithub /> View Code
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-     {/* Contact Buttons */}
-      <div className="text-center mt-12 flex flex-col sm:flex-row justify-center gap-4">
-        <button 
-          onClick={openWhatsApp}
-          className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-medium hover:shadow-lg hover:shadow-green-500/30 transition-all"
+        {/*
+          ZIGZAG CAROUSEL
+          - The wrapper has extra vertical padding so alternating cards can shift up/down.
+          - Each card rotates slightly toward the center of the row and translates on the Y axis.
+          - On hover, cards snap back to level (rotate-0, translate-y-0) for a "driving in" effect.
+        */}
+        <div
+          ref={scrollRef}
+          className="flex gap-8 overflow-x-auto snap-x snap-mandatory pt-12 pb-16 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <FiPhone /> WhatsApp Me
-        </button>
+          {projects.map((project, index) => {
+            // Alternate direction: even = up/left-tilt, odd = down/right-tilt
+            const isEven = index % 2 === 0;
+            const zigzag = isEven
+              ? 'lg:-translate-y-6 lg:rotate-[-1.5deg]'
+              : 'lg:translate-y-6 lg:rotate-[1.5deg]';
+
+            return (
+              <div
+                key={index}
+                className={`
+                  group snap-center flex-shrink-0
+                  w-[85vw] sm:w-[400px] lg:w-[420px]
+                  flex flex-col overflow-hidden rounded-2xl
+                  bg-white/[0.03] border border-white/[0.08] backdrop-blur-md
+                  transition-all duration-700 ease-out
+                  hover:border-brand-500/50 hover:bg-white/[0.08]
+                  hover:rotate-0 hover:translate-y-0 hover:scale-[1.02]
+                  hover:shadow-2xl hover:shadow-brand-500/10
+                  ${zigzag}
+                `}
+                data-aos="fade-up"
+                data-aos-delay={index * 60}
+              >
+                {/* Live Screenshot Preview */}
+                <div className="relative h-56 overflow-hidden bg-zinc-900">
+                  {!loaded[index] && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
+                      <div className="w-6 h-6 border-2 border-white/10 border-t-brand-400 rounded-full animate-spin" />
+                    </div>
+                  )}
+
+                  <img
+                    src={getPreview(project.liveLink)}
+                    alt={`${project.title} live preview`}
+                    className={`w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700 ${
+                      loaded[index] ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    loading="lazy"
+                    onLoad={() => setLoaded((prev) => ({ ...prev, [index]: true }))}
+                    onError={() => setLoaded((prev) => ({ ...prev, [index]: false }))}
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] font-medium text-white">
+                    {project.category}
+                  </div>
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] text-gray-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
+                    Live
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-grow p-6">
+                  <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-5 flex-grow">
+                    {project.resultNote}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-2.5 py-0.5 text-[11px] font-medium rounded-md bg-white/[0.04] text-gray-400 border border-white/[0.06]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-2 pt-4 border-t border-white/[0.05]">
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-xs transition-all duration-300"
+                    >
+                      <FiExternalLink className="text-sm" />
+                      <span>View Live</span>
+                    </a>
+                    <button
+                      onClick={() => openWhatsApp(project.title)}
+                      aria-label={`Discuss ${project.title}`}
+                      className="p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-gray-400 hover:text-brand-400 transition-all"
+                    >
+                      <FaWhatsapp className="text-base" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-6 text-center" data-aos="fade-up">
+          <button
+            onClick={() => openWhatsApp()}
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-500/25"
+          >
+            <FaWhatsapp className="text-base" />
+            <span>Start Your Project</span>
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

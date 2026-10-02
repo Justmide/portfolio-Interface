@@ -1,128 +1,147 @@
-import React, { use } from "react";
-import Me from "../assets/Images/Me.png";
-import { Typewriter } from 'react-simple-typewriter';
-import MyService from "./MyService";
-import PrimaryBtn from "./ButtonStyles/PrimaryBtn";
-import TechStack from "../Animations & Motions/TechStack";
-import Installation from "../Animations & Motions/Installation";
-import ProjectLinks from "./Projects/ProjectLinks";
-import ContactBox from "./Contact/ContactBox";
-
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
+import { FiArrowRight } from 'react-icons/fi';
 
 const HeroSection = () => {
-
-  const handleClick = () => {
-    const phoneNumber = '2347088136059'; // Add country code (234 for Nigeria)
-    const message = 'Hello! I came across your portfolio and wanted to connect...';
+  const handleWhatsApp = () => {
+    const phoneNumber = '2347088136059';
+    const message = "Hello Mide! I came across your portfolio and I'm interested in building a website for my business.";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
-  const goToIg = () =>{
-    const url = 'https://www.instagram.com/interface.iq/';
-    window.open(url, '_blank')
-  }
+  const handleTikTok = () => {
+    window.open('https://www.tiktok.com/@skryptbymide', '_blank');
+  };
+
+  const scrollToProjects = () => {
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="w-full mt-[118px] p-4 bg-gradient-to-b from-black via-[#0f172a] to-black text-white flex flex-col items-center justify-center px-6 py-10 relative overflow-hidden">
-      
-      {/* Animated Gradient Light Beams */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute w-[400px] h-[400px] bg-pink-500 opacity-20 blur-3xl animate-pulse top-20 left-[-100px] rounded-full" />
-        <div className="absolute w-[300px] h-[300px] bg-purple-600 opacity-20 blur-2xl animate-pulse delay-200 top-[60%] right-[-100px] rounded-full" />
-      </div>
+    <div
+      className="pt-16 w-full min-h-[92vh] bg-black/85 text-white flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14 relative overflow-hidden select-none"
+      id="hero-section"
+    >
+      {/* Subtle ambient glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-brand-500/[0.04] rounded-full blur-[140px] pointer-events-none" />
 
-      {/* IMAGE  */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-12 mt-10 z-10">
-        
-        {/* Glowing Circle Image with Aura Animation */}
-        <div className="relative w-[280px] h-[280px]">
-          {/* Aura Glow */}
-          <div className="absolute inset-0 rounded-full 
-            bg-[conic-gradient(from_180deg_at_50%_50%,#a855f7_0%,#ec4899_50%,#0ea5e9_100%)] 
-            blur-[80px] animate-spin-slow opacity-20">
-          </div>
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto pt-16 pb-12">
+        {/* Status Pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono uppercase tracking-wider text-gray-300 mb-5 backdrop-blur-md"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse" />
+          <span>Websites for Businesses</span>
+        </motion.div>
 
-          {/* Image Border with Pulse */}
-          <div className="absolute inset-0 rounded-full border-4 border-purple-600 animate-pulse" />
+        {/* Name + Location */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[10px] sm:text-sm font-mono uppercase tracking-[0.25em] text-brand-400 mb-5"
+        >
+          Olumide Oyediran · Nigeria
+        </motion.p>
 
-          {/* Profile Image */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <img 
-              src={Me}
-              alt="Profile"
-              className="w-[200px] h-[200px] rounded-full object-cover shadow-2xl transform hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        </div>
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08] text-white"
+        >
+          Websites built to bring you{' '}
+          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-500 bg-clip-text text-transparent">
+            real customers.
+          </span>
+        </motion.h1>
 
-        {/* My Short details */}
-        <div className="max-w-md text-center lg:text-left animate-fade-in-up">
-           <p className="text-base sm:text-lg font-semibold animate-fade-in-up font-caveat">
-          <Typewriter
-            words={["I’m Olumide.", "Mern Stack Developer.", "Dreamer.", "I design.", "I code.", "I dream in Pixels."]}
-            loop={true}
-            cursor
-            cursorStyle="|"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
-        </p>
-          <h1 
-          className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-4 font-script"
+        {/* Subhead */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mb-10 leading-relaxed"
+        >
+          Fast, mobile-first websites tailored for schools, logistics companies, hotels, and
+          accounting firms across Nigeria. Directly linked to your WhatsApp.
+        </motion.p>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mb-14"
+        >
+          {/* Primary WhatsApp */}
+          <button
+            type="button"
+            onClick={handleWhatsApp}
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-brand-500/25"
           >
-           Pixel to Production <br /> I Build It All
-          </h1>
-          <p className="text-lg text-gray-300 leading-relaxed font-quicksand"
-          data-aos="fade-up">
-        From UI to backend, I build fast, scalable apps with the MERN stack.
-          </p>
+            <FaWhatsapp className="text-lg" />
+            <span>Chat on WhatsApp</span>
+            <FiArrowRight className="text-sm" />
+          </button>
 
-          <div 
-          className="mt-5 w-100 flex gap-5 items-center justify-center lg:justify-start">
-          <PrimaryBtn 
-          text="Contact Me"
-          onClick={handleClick}
-          />
-          
-          <PrimaryBtn 
-          text="Instagram"
-          onClick={goToIg}
-          />
-         
-          
-        </div>
-        </div>
+          {/* Secondary — Explore Work */}
+          <button
+            type="button"
+            onClick={scrollToProjects}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] hover:border-white/[0.16] text-white text-sm sm:text-base font-semibold transition-all duration-300"
+          >
+            <span>Explore Work</span>
+          </button>
 
-        
+          {/* TikTok */}
+          <button
+            type="button"
+            onClick={handleTikTok}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-transparent hover:bg-white/[0.05] text-gray-300 hover:text-white text-sm font-medium transition-colors"
+          >
+            <FaTiktok className="text-sm" />
+            <span>TikTok</span>
+          </button>
+        </motion.div>
+
+        {/* Metric Highlights */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full max-w-3xl pt-8 border-t border-white/[0.08]"
+        >
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              &lt; 2.0s
+            </span>
+            <span className="text-xs text-gray-400 font-mono mt-1">Mobile Load Time</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">Direct</span>
+            <span className="text-xs text-gray-400 font-mono mt-1">WhatsApp Leads</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">Custom</span>
+            <span className="text-xs text-gray-400 font-mono mt-1">info@domain.com</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">100%</span>
+            <span className="text-xs text-gray-400 font-mono mt-1">Mobile Responsive</span>
+          </div>
+        </motion.div>
       </div>
-
-      {/* MY SERVICE  */}
-       <div className="mt-[125px]"
-     >
-      <MyService />
     </div>
-
-    {/* MY STACK */}
-    <div className="mt-[100px]">
-     <TechStack />
-    </div>
-    <div>
-      <Installation />
-    </div>
-
-    {/* PROJECT */}
-    <div className="mt-[40px]">
-      {/* Add your project component here */}
-     <ProjectLinks />
-    </div>
-
-    <div>
-      <ContactBox />
-    </div>
-
-     </div>
   );
 };
 

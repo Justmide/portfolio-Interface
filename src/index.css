@@ -2,34 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-black text-gray-900;
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
 }
 
+body {
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safety Fallback: Guarantee initial elements are never blank before AOS runs */
+html:not(.aos-init) [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+[data-aos] {
+  pointer-events: auto !important;
+}
+
+/* GPU Hardware Acceleration to Fix Scroll Lag */
+.will-change-transform {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.gpu-fix {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimized Smooth Marquee Animations */
 @keyframes marquee-right {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
-
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes marquee-left {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
-
   100% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-marquee-right {
-  animation: marquee-right 20s linear infinite;
+  animation: marquee-right 28s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-left {
-  animation: marquee-left 20s linear infinite;
+  animation: marquee-left 28s linear infinite;
+  will-change: transform;
+}
+
+/* Pause animation on hover for readability without layout shifts */
+.animate-marquee-right:hover,
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+/* Space Orbit Keyframe Rotations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+  will-change: transform;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
