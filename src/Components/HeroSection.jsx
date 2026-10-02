@@ -59,9 +59,9 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08] text-white"
         >
-          Websites built to bring you{' '}
+          Websites that turn visitors{' '}
           <span className="bg-gradient-to-b from-white via-gray-200 to-gray-500 bg-clip-text text-transparent">
-            real customers.
+            into clients.
           </span>
         </motion.h1>
 
@@ -72,8 +72,7 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mb-10 leading-relaxed"
         >
-          Fast, mobile-first websites tailored for schools, logistics companies, hotels, and
-          accounting firms across Nigeria. Directly linked to your WhatsApp.
+          Fast, mobile-first websites designed to generate real enquiries. Perfect for service businesses that want a clean, modern online presence with WhatsApp built in.
         </motion.p>
 
         {/* Action Buttons */}
