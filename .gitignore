@@ -1,9 +1,14 @@
 node_modules/
+dist/
 
 # Env / secrets
 .env
 .env.*
 !.env.example
+
+# Build / cache
+/.cache
+/build
 
 # Snyk Security Extension - AI Rules (auto-generated)
 .github/instructions/snyk_rules.instructions.md

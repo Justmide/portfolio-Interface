@@ -72,8 +72,7 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mb-10 leading-relaxed"
         >
-          Fast, mobile-first websites designed to generate real enquiries. Perfect for 
-          service businesses that want a clean, modern online presence with Whatsapp built in.
+          Fast, mobile-first websites designed to generate real enquiries. Perfect for service businesses that want a clean, modern online presence with WhatsApp built in.
         </motion.p>
 
         {/* Action Buttons */}
