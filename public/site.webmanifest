@@ -1,0 +1,23 @@
+{
+  "name": "Skryptvolt | High-Converting Websites & Software Engineering",
+  "short_name": "Skryptvolt",
+  "description": "Fast, mobile-first websites and software engineering tailored for Nigerian SMEs and global businesses by Olumide Oyediran (Skryptvolt).",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0044FB",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

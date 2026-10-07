@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cross-Browser Base Configuration (Chrome, Firefox, Brave, Yandex, Safari, Edge) */
 html {
   scroll-behavior: smooth;
   background-color: #000000;
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #090a0f;
 }
 
 body {
@@ -13,6 +19,17 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Cross-browser Glassmorphism & Backdrop Filter Fallbacks */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .backdrop-blur-md,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    background-color: rgba(12, 13, 18, 0.96) !important;
+  }
 }
 
 /* Safety Fallback: Guarantee initial elements are never blank before AOS runs */
@@ -25,7 +42,7 @@ html:not(.aos-init) [data-aos] {
   pointer-events: auto !important;
 }
 
-/* GPU Hardware Acceleration to Fix Scroll Lag */
+/* GPU Hardware Acceleration to Fix Scroll Lag across WebKit, Gecko, and Blink engines */
 .will-change-transform {
   will-change: transform;
   transform: translateZ(0);
@@ -33,7 +50,9 @@ html:not(.aos-init) [data-aos] {
 
 .gpu-fix {
   transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   perspective: 1000px;
 }
 
@@ -87,9 +106,10 @@ html:not(.aos-init) [data-aos] {
   will-change: transform;
 }
 
-/* Custom Scrollbar */
+/* WebKit Custom Scrollbar (Chrome, Brave, Yandex, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -103,4 +123,102 @@ html:not(.aos-init) [data-aos] {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+/* Selection Color Uniformity */
+::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+::-moz-selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ============================================================
+   DEVELOPER BUTTONS & CYBER-CHASSIS SYSTEM (SKRYPTVOLT)
+   ============================================================ */
+
+/* Primary Dev Execution Button */
+.dev-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.6rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(180deg, #101426 0%, #070912 100%);
+  border: 1px solid rgba(0, 102, 255, 0.7);
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dev-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transition: left 0.6s ease;
+}
+
+.dev-btn-primary:hover::before {
+  left: 100%;
+}
+
+.dev-btn-primary:hover {
+  border-color: #0066ff;
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.dev-btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Secondary Dev Terminal Bracket Button */
+.dev-btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #d1d5db;
+  background: rgba(10, 12, 19, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dev-btn-secondary:hover {
+  color: #ffffff;
+  border-color: rgba(0, 102, 255, 0.5);
+  background: rgba(16, 20, 34, 0.96);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+.dev-btn-secondary:active {
+  transform: translateY(1px) scale(0.98);
 }

@@ -16,16 +16,16 @@ const PricingPackages = () => {
         NGN: '₦180,000',
         USD: '$350',
       },
-      timeline: '3 – 5 Days',
+      timeline: '1 – 2 Weeks',
       features: [
-        '1–3 clean, high-converting pages',
+        '1–3 clean, high-converting pages or blog',
         'WhatsApp click-to-chat integration',
         'Mobile-first responsive design',
         '1 professional business email',
         'Basic local Google SEO setup',
         'Free 1st month maintenance & cPanel',
       ],
-      idealFor: 'Logistics brokers, interior designers, salons, single-service firms',
+      idealFor: 'Blogs, logistics brokers, interior designers, salons, single-service firms',
     },
     {
       id: 'growth',
@@ -37,7 +37,7 @@ const PricingPackages = () => {
         NGN: '₦350,000',
         USD: '$750',
       },
-      timeline: '7 – 10 Days',
+      timeline: '2 – 3 Weeks',
       features: [
         'Up to 7 custom designed high-speed pages',
         'WhatsApp instant quote generator & lead capture',
@@ -59,7 +59,7 @@ const PricingPackages = () => {
         NGN: '₦650,000+',
         USD: '$1,400+',
       },
-      timeline: '2 – 3 Weeks',
+      timeline: '4 – 6 Weeks',
       features: [
         'Full custom full-stack application (React, Node, DB)',
         'Paystack, Flutterwave, Stripe & bank transfer checkout',
@@ -97,29 +97,29 @@ const PricingPackages = () => {
             No hidden fees. Every project includes fast code, mobile optimization, and direct post-launch support.
           </p>
 
-          {/* Currency Toggle */}
-          <div className="mt-8 inline-flex items-center p-1 rounded-full bg-white/[0.03] border border-white/[0.08]">
+          {/* Developer Environment Currency Switch */}
+          <div className="mt-8 inline-flex items-center p-1 rounded-xl bg-[#0c0e18] border border-white/10 font-mono">
             <button
               type="button"
               onClick={() => setCurrency('NGN')}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all duration-300 ${
                 currency === 'NGN'
-                  ? 'bg-brand-500 text-white'
-                  : 'text-gray-500 hover:text-white'
+                  ? 'bg-brand-500 text-white shadow-md shadow-brand-500/25 border border-brand-400/50'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
-              ₦ NGN
+              ₦ [NGN]
             </button>
             <button
               type="button"
               onClick={() => setCurrency('USD')}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all duration-300 ${
                 currency === 'USD'
-                  ? 'bg-brand-500 text-white'
-                  : 'text-gray-500 hover:text-white'
+                  ? 'bg-brand-500 text-white shadow-md shadow-brand-500/25 border border-brand-400/50'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
-              $ USD
+              $ [USD]
             </button>
           </div>
         </div>
@@ -208,23 +208,24 @@ className={`
                   ))}
                 </div>
 
-                {/* CTA */}
+                {/* Developer Deployment CTA */}
                 <button
                   type="button"
                   onClick={() => handleSelectPackage(pkg.name)}
                   className={`
-                    w-full py-3.5 px-4 rounded-full font-bold text-sm
-                    flex items-center justify-center gap-2 transition-all duration-300
+                    w-full py-3.5 px-4 rounded-xl font-mono text-xs sm:text-sm font-bold uppercase tracking-wider
+                    flex items-center justify-center gap-2.5 transition-all duration-300 active:scale-[0.98] group/btn
                     ${
                       pkg.popular
-                        ? 'bg-brand-500 hover:bg-brand-400 text-white hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-500/25'
-                        : 'bg-white/[0.06] hover:bg-white/[0.10] text-white border border-white/[0.08]'
+                        ? 'bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white shadow-[0_0_20px_rgba(0,102,255,0.35)] hover:shadow-[0_0_30px_rgba(0,102,255,0.6)]'
+                        : 'bg-[#0e1220] hover:bg-[#141a2e] text-gray-200 hover:text-white border border-white/10 hover:border-brand-500/50 shadow-md'
                     }
                   `}
                 >
-                  <FaWhatsapp className="text-base" />
-                  <span>Get Started</span>
-                  <FiArrowRight className="text-sm" />
+                  <span className="text-brand-300 font-bold">❯_</span>
+                  <FaWhatsapp className="text-base text-emerald-300 group-hover/btn:scale-110 transition-transform" />
+                  <span>Deploy {pkg.name.split(' ')[0]}</span>
+                  <FiArrowRight className="text-xs group-hover/btn:translate-x-1 transition-transform" />
                 </button>
               </div>
             );

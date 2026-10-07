@@ -13,7 +13,12 @@ export default function ThankYou() {
 
   return (
     <>
-      <SEO title="SkryptByMide | Message Received" description="Your inquiry has been received. Olumide Oyediran will review your project details and reply shortly." path="/thankYou" />
+      <SEO
+        title="Skryptvolt | Message Received"
+        description="Your inquiry has been received. Olumide Oyediran (Skryptvolt) will review your project details and reply shortly."
+        path="/thankYou"
+        noindex={true}
+      />
       <div className="flex items-center justify-center min-h-screen bg-black/90 px-4 pt-20">
         <div className="bg-[#0c0d12] border border-white/10 shadow-2xl rounded-2xl p-8 sm:p-10 max-w-md w-full text-center relative overflow-hidden">
           <div className="w-16 h-16 rounded-full bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mx-auto mb-5 text-brand-400">
@@ -32,17 +37,23 @@ export default function ThankYou() {
             <button
               type="button"
               onClick={handleWhatsApp}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm transition-all shadow-md"
+              className="group relative overflow-hidden rounded-xl p-[1px] bg-gradient-to-r from-brand-500 via-cyan-400 to-brand-600 shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.55)] transition-all active:scale-[0.98]"
             >
-              <FaWhatsapp className="text-lg" />
-              <span>Need Faster Response? WhatsApp Me</span>
+              <div className="flex items-center justify-center gap-2.5 py-3 px-4 rounded-[11px] bg-[#0c0e18] group-hover:bg-[#12162a] transition-colors">
+                <span className="font-mono text-brand-400 font-bold text-xs">❯_</span>
+                <FaWhatsapp className="text-emerald-400 text-lg group-hover:scale-110 transition-transform" />
+                <span className="font-mono font-bold text-xs uppercase tracking-wider text-white">
+                  Fast Channel: WhatsApp Me
+                </span>
+              </div>
             </button>
 
             <Link
               to="/"
-              className="w-full py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold text-sm transition-all"
+              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#090b14] hover:bg-[#111526] border border-white/10 hover:border-brand-500/40 text-gray-300 hover:text-white font-mono text-xs uppercase tracking-wider transition-all"
             >
-              Back to Home
+              <span className="text-gray-500">//</span>
+              <span>return_to_home()</span>
             </Link>
           </div>
         </div>

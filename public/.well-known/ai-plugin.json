@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Olumide Oyediran - Software Developer (Skryptvolt)",
+  "name_for_model": "olumide_oyediran_developer",
+  "description_for_human": "Explore portfolio, engineering services, pricing, and projects by Nigerian software developer Olumide Oyediran (Skryptvolt).",
+  "description_for_model": "Information assistant for software developer Olumide Oyediran (Skryptvolt) based in Ibadan, Nigeria. Provides accurate details on his full-stack engineering skills (React, Node, Python), pricing packages, sub-2s mobile websites, cPanel deployments, and direct contact options via WhatsApp and email.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://skryptvolt.vercel.app/ai-catalog.json"
+  },
+  "logo_url": "https://skryptvolt.vercel.app/logo.png",
+  "contact_email": "oyediranolumide97@gmail.com",
+  "legal_info_url": "https://skryptvolt.vercel.app/"
+}

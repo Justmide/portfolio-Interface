@@ -77,27 +77,17 @@ const Footer = () => {
               high-converting websites and modern digital systems that bring real revenue.
             </p>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-3 pt-2">
+            {/* Social Links (Developer System Links) */}
+            <div className="flex items-center gap-2.5 pt-2 font-mono">
               <a
                 href="https://wa.me/2347088136059"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
                 title="Chat on WhatsApp"
-                className="w-9 h-9 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 hover:bg-brand-500 hover:text-white flex items-center justify-center transition-all duration-200"
+                className="w-9 h-9 rounded-xl bg-brand-500/10 border border-brand-500/30 text-emerald-400 hover:bg-brand-500 hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm"
               >
                 <FaWhatsapp className="w-4 h-4" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@skryptbymide"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok"
-                title="Follow on TikTok"
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
-              >
-                <FaTiktok className="w-4 h-4" />
               </a>
               <a
                 href="https://github.com/justmide"
@@ -105,7 +95,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 title="GitHub Repositories"
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
+                className="w-9 h-9 rounded-xl bg-[#090b14] border border-white/10 text-gray-300 hover:text-white hover:border-brand-500/40 hover:bg-[#12162a] flex items-center justify-center transition-all duration-200 shadow-sm"
               >
                 <FiGithub className="w-4 h-4" />
               </a>
@@ -115,9 +105,19 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 title="Connect on LinkedIn"
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
+                className="w-9 h-9 rounded-xl bg-[#090b14] border border-white/10 text-gray-300 hover:text-white hover:border-brand-500/40 hover:bg-[#12162a] flex items-center justify-center transition-all duration-200 shadow-sm"
               >
                 <FiLinkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@skryptbymide"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                title="Follow on TikTok"
+                className="w-9 h-9 rounded-xl bg-[#090b14] border border-white/10 text-gray-300 hover:text-white hover:border-brand-500/40 hover:bg-[#12162a] flex items-center justify-center transition-all duration-200 shadow-sm"
+              >
+                <FaTiktok className="w-4 h-4" />
               </a>
               <a
                 href="https://twitter.com/skryptbymide"
@@ -125,7 +125,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="Twitter / X"
                 title="Follow on X"
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.1] flex items-center justify-center transition-all duration-200"
+                className="w-9 h-9 rounded-xl bg-[#090b14] border border-white/10 text-gray-300 hover:text-white hover:border-brand-500/40 hover:bg-[#12162a] flex items-center justify-center transition-all duration-200 shadow-sm"
               >
                 <FiTwitter className="w-4 h-4" />
               </a>
@@ -172,6 +172,15 @@ const Footer = () => {
                   className="text-gray-400 hover:text-brand-400 transition-colors text-left"
                 >
                   Starting Packages
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('faq', 'hash')}
+                  className="text-gray-400 hover:text-brand-400 transition-colors text-left"
+                >
+                  FAQs &amp; Pricing
                 </button>
               </li>
               <li>
@@ -286,16 +295,17 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
           <p className="font-mono text-center sm:text-left">
-            © {new Date().getFullYear()} SKRYPT VOLT · Mission Control Ibadan · All Systems Operational.
+            © {new Date().getFullYear()} SKRYPTVOLT · Mission Control Ibadan · All Systems Operational.
           </p>
 
           <button
             type="button"
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-gray-400 hover:text-brand-400 transition-colors font-mono cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0c0e18] hover:bg-[#12162a] border border-white/10 hover:border-brand-500/50 text-gray-400 hover:text-white transition-all font-mono text-xs cursor-pointer shadow-sm"
           >
-            <span>Ascend to Orbit</span>
-            <FiArrowUp className="text-sm" />
+            <span className="text-brand-400">^</span>
+            <span>return_to_top()</span>
+            <FiArrowUp className="text-xs" />
           </button>
         </div>
       </div>

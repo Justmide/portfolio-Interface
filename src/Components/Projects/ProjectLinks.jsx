@@ -6,9 +6,13 @@ const ProjectLinks = () => {
   const scrollRef = useRef(null);
   const [loaded, setLoaded] = useState({});
 
-  // WordPress mShots — free, cached, no API key, fast.
-  const getPreview = (url) =>
-    `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=800&h=500`;
+  // WordPress mShots — optimized resolution for faster 3G loading
+  const getPreview = (url) => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const w = isMobile ? 450 : 650;
+    const h = isMobile ? 280 : 400;
+    return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
+  };
 
   const projects = [
     {
@@ -91,14 +95,14 @@ const ProjectLinks = () => {
           <button
             onClick={() => scroll('left')}
             aria-label="Scroll left"
-            className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all"
+            className="p-2.5 rounded-xl bg-[#0b0e18] border border-white/10 hover:border-brand-500/50 text-gray-400 hover:text-white transition-all shadow-sm font-mono"
           >
             <FiChevronLeft className="text-lg" />
           </button>
           <button
             onClick={() => scroll('right')}
             aria-label="Scroll right"
-            className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.08] transition-all"
+            className="p-2.5 rounded-xl bg-[#0b0e18] border border-white/10 hover:border-brand-500/50 text-gray-400 hover:text-white transition-all shadow-sm font-mono"
           >
             <FiChevronRight className="text-lg" />
           </button>
@@ -153,6 +157,7 @@ const ProjectLinks = () => {
                       loaded[index] ? 'opacity-100' : 'opacity-0'
                     }`}
                     loading="lazy"
+                    decoding="async"
                     onLoad={() => setLoaded((prev) => ({ ...prev, [index]: true }))}
                     onError={() => setLoaded((prev) => ({ ...prev, [index]: false }))}
                   />
@@ -194,17 +199,18 @@ const ProjectLinks = () => {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-xs transition-all duration-300"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-mono font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] transition-all duration-300"
                     >
-                      <FiExternalLink className="text-sm" />
-                      <span>View Live</span>
+                      <span className="text-emerald-300">❯_</span>
+                      <FiExternalLink className="text-xs" />
+                      <span>Launch Preview</span>
                     </a>
                     <button
                       onClick={() => openWhatsApp(project.title)}
                       aria-label={`Discuss ${project.title}`}
-                      className="p-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-gray-400 hover:text-brand-400 transition-all"
+                      className="p-2.5 rounded-xl bg-[#090b14] hover:bg-[#12162a] border border-white/10 hover:border-brand-500/50 text-gray-400 hover:text-emerald-400 transition-all"
                     >
-                      <FaWhatsapp className="text-base" />
+                      <FaWhatsapp className="text-sm" />
                     </button>
                   </div>
                 </div>
@@ -217,10 +223,11 @@ const ProjectLinks = () => {
         <div className="mt-6 text-center" data-aos="fade-up">
           <button
             onClick={() => openWhatsApp()}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-500/25"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-mono font-bold text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(0,102,255,0.35)] hover:shadow-[0_0_35px_rgba(0,102,255,0.6)] transition-all duration-300 active:scale-[0.98]"
           >
-            <FaWhatsapp className="text-base" />
-            <span>Start Your Project</span>
+            <span className="text-emerald-300 font-bold">❯_</span>
+            <FaWhatsapp className="text-base text-emerald-300" />
+            <span>Initialize Your Project Build</span>
           </button>
         </div>
       </div>

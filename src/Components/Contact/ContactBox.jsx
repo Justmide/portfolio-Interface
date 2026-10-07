@@ -118,24 +118,26 @@ const ContactBox = () => {
               </div>
 
               <div className="flex flex-col gap-3 mt-auto">
-                {/* Primary WhatsApp CTA */}
+                {/* Primary Developer WhatsApp CTA */}
                 <button
                   type="button"
                   onClick={handleWhatsApp}
-                  className="w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-500/25"
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-mono font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.55)] active:scale-[0.98]"
                 >
-                  <FaWhatsapp className="text-base" />
-                  <span>Chat on WhatsApp</span>
+                  <span className="text-emerald-300 font-bold">❯_</span>
+                  <FaWhatsapp className="text-base text-emerald-300" />
+                  <span>Connect on WhatsApp</span>
                 </button>
 
-                {/* Secondary form link */}
+                {/* Secondary Dev Form Link */}
                 <button
                   type="button"
                   onClick={() => navigate('/contact')}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-full bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] text-white font-semibold text-sm transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-[#0a0c16] hover:bg-[#12162a] border border-white/10 hover:border-brand-500/40 text-gray-200 hover:text-white font-mono font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-md active:scale-[0.98]"
                 >
+                  <span className="text-gray-500">//</span>
                   <FiMessageSquare className="text-sm" />
-                  <span>Send Detailed Brief</span>
+                  <span>Send Project Specs</span>
                   <FiArrowRight className="text-xs" />
                 </button>
               </div>

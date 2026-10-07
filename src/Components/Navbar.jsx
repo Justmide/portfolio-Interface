@@ -13,6 +13,7 @@ const Navbar = () => {
     { name: 'Projects', type: 'route', path: '/projects' },
     { name: 'Services', type: 'hash', targetId: 'services' },
     { name: 'Packages', type: 'hash', targetId: 'packages' },
+    { name: 'FAQs', type: 'hash', targetId: 'faq' },
     { name: 'Contact', type: 'route', path: '/contact' },
   ];
 
@@ -112,10 +113,15 @@ const Navbar = () => {
             <button
               type="button"
               onClick={handleWhatsApp}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-sm font-bold transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-500/25"
+              className="relative group overflow-hidden rounded-xl p-[1px] bg-gradient-to-r from-brand-500 via-cyan-400 to-brand-600 shadow-[0_0_15px_rgba(0,102,255,0.3)] hover:shadow-[0_0_25px_rgba(0,102,255,0.55)] transition-all active:scale-[0.98]"
             >
-              <FaWhatsapp className="text-base" />
-              <span>Let's Talk</span>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-[11px] bg-[#0c0e18] group-hover:bg-[#12162a] transition-colors">
+                <span className="font-mono text-brand-400 font-bold text-xs">❯_</span>
+                <FaWhatsapp className="text-emerald-400 text-sm group-hover:scale-110 transition-transform" />
+                <span className="font-mono text-xs font-bold tracking-wider uppercase text-white">
+                  Chat With Dev
+                </span>
+              </div>
             </button>
           </div>
         </div>
@@ -159,10 +165,11 @@ const Navbar = () => {
                 setMenuOpen(false);
                 handleWhatsApp();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3.5 bg-brand-500 hover:bg-brand-400 text-white rounded-xl font-bold text-sm transition-all"
+              className="w-full flex items-center justify-center gap-2.5 py-3.5 bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 text-white rounded-xl font-mono uppercase font-bold text-xs tracking-wider shadow-lg shadow-brand-500/25 transition-all active:scale-[0.98]"
             >
-              <FaWhatsapp className="text-lg" />
-              <span>Let's Talk on WhatsApp</span>
+              <span className="font-mono text-emerald-300">❯_</span>
+              <FaWhatsapp className="text-base text-emerald-300" />
+              <span>Connect on WhatsApp</span>
             </button>
 
             <button
@@ -171,10 +178,10 @@ const Navbar = () => {
                 setMenuOpen(false);
                 handleTikTok();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-white rounded-xl font-medium text-sm transition-all"
+              className="w-full flex items-center justify-center gap-2 py-3 bg-[#0d101a] hover:bg-[#141829] border border-white/10 text-gray-300 hover:text-white rounded-xl font-mono uppercase text-xs tracking-wider transition-all"
             >
-              <FaTiktok className="text-base" />
-              <span>Follow on TikTok (@skryptbymide)</span>
+              <FaTiktok className="text-sm" />
+              <span>DevLogs on TikTok</span>
             </button>
           </div>
         </div>

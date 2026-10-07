@@ -52,7 +52,12 @@ const ContactUs = () => {
 
   return (
     <>
-      <SEO title="SkryptByMide | Contact" description="Contact Olumide Oyediran for a fast, mobile-first website. Based in Ibadan, serving clients worldwide. WhatsApp, email, and project brief form available." path="/contact" />
+      <SEO
+        title="Contact Olumide Oyediran | Get a Website Quote · Skryptvolt"
+        description="Get in touch with Olumide Oyediran for a fast, modern website for your business. Based in Ibadan, serving clients in Lagos, Abuja, UK, US & worldwide. Instant WhatsApp chat, email, and project brief form."
+        path="/contact"
+        keywords="hire web developer Ibadan, contact web designer Nigeria, website quote Nigeria, SME web design consultation, WhatsApp website developer"
+      />
       <div className="w-full mt-[75px] pt-12 pb-20 bg-gradient-to-b from-black/90 via-[#090a0f]/90 to-black/90 text-white flex flex-col items-center justify-center px-4 sm:px-8 lg:px-14 relative min-h-screen">
       
       {/* Background accents (No pink) */}
@@ -96,10 +101,15 @@ const ContactUs = () => {
               <button
                 type="button"
                 onClick={handleWhatsApp}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm shadow-md transition-all duration-200"
+                className="group relative w-full overflow-hidden rounded-xl p-[1px] bg-gradient-to-r from-brand-500 via-cyan-400 to-brand-600 shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.55)] transition-all active:scale-[0.98]"
               >
-                <FaWhatsapp className="text-lg" />
-                <span>Chat on WhatsApp (+234 708 813 6059)</span>
+                <div className="flex items-center justify-center gap-2.5 py-3 px-4 rounded-[11px] bg-[#0c0e18] group-hover:bg-[#12162a] transition-colors">
+                  <span className="font-mono text-brand-400 font-bold text-xs">❯_</span>
+                  <FaWhatsapp className="text-emerald-400 text-lg group-hover:scale-110 transition-transform" />
+                  <span className="font-mono font-bold text-xs uppercase tracking-wider text-white">
+                    Connect on WhatsApp [+234 708 813 6059]
+                  </span>
+                </div>
               </button>
               <div className="flex items-center justify-center gap-2 text-[11px] text-gray-400 mt-3">
                 <FiClock className="text-brand-400" />
@@ -200,10 +210,10 @@ const ContactUs = () => {
                     className="space-y-4"
                   >
                     {/* FormSubmit Configuration */}
-                    <input type="hidden" name="_subject" value="New Business Website Inquiry - SkryptByMide" />
+                    <input type="hidden" name="_subject" value="New Business Website Inquiry - Skryptvolt" />
                     <input type="hidden" name="_captcha" value="false" />
                     <input type="hidden" name="_template" value="table" />
-                    <input type="hidden" name="_next" value="https://skryptbymidey.vercel.app/thankYou" />
+                    <input type="hidden" name="_next" value="https://skryptvolt.vercel.app/thankYou" />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Name */}
@@ -309,14 +319,15 @@ const ContactUs = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-white hover:bg-gray-200 text-white font-bold text-sm shadow-md transition-all duration-200 mt-2 disabled:opacity-50"
+                      className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-mono font-bold text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(0,102,255,0.3)] hover:shadow-[0_0_35px_rgba(0,102,255,0.6)] transition-all duration-200 mt-2 disabled:opacity-50 active:scale-[0.99]"
                     >
                       {isSubmitting ? (
-                        <span>Sending Inquiry...</span>
+                        <span>[ EXEC ] Transmitting Brief...</span>
                       ) : (
                         <>
+                          <span className="text-emerald-300">❯_</span>
                           <FiSend className="text-base" />
-                           <span>Submit Message to oyediranolumide97@gmail.com</span>
+                          <span>Transmit Message [yediranolumide97@gmail.com]</span>
                         </>
                       )}
                     </button>

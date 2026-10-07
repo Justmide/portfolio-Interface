@@ -59,9 +59,9 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08] text-white"
         >
-          Websites built to bring you{' '}
+          Websites that turn visitors{' '}
           <span className="bg-gradient-to-b from-white via-gray-200 to-gray-500 bg-clip-text text-transparent">
-            real customers.
+            into clients.
           </span>
         </motion.h1>
 
@@ -72,8 +72,8 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mb-10 leading-relaxed"
         >
-          Fast, mobile-first websites tailored for schools, logistics companies, hotels, and
-          accounting firms across Nigeria. Directly linked to your WhatsApp.
+          Fast, mobile-first websites designed to generate real enquiries. Perfect for 
+          service businesses that want a clean, modern online presence with Whatsapp built in.
         </motion.p>
 
         {/* Action Buttons */}
@@ -83,34 +83,43 @@ const HeroSection = () => {
           transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto mb-14"
         >
-          {/* Primary WhatsApp */}
+          {/* Primary Developer Execution Button (WhatsApp) */}
           <button
             type="button"
             onClick={handleWhatsApp}
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-brand-500/25"
+            className="group relative overflow-hidden rounded-xl p-[1px] bg-gradient-to-r from-brand-500 via-cyan-400 to-brand-600 shadow-[0_0_25px_rgba(0,102,255,0.35)] hover:shadow-[0_0_35px_rgba(0,102,255,0.6)] transition-all duration-300 active:scale-[0.98]"
           >
-            <FaWhatsapp className="text-lg" />
-            <span>Chat on WhatsApp</span>
-            <FiArrowRight className="text-sm" />
+            <div className="relative flex items-center justify-center gap-3 px-6 py-3.5 rounded-[11px] bg-gradient-to-b from-[#0f1322] to-[#080912] group-hover:from-[#131930] group-hover:to-[#0b0e1a] transition-all duration-300">
+              <span className="font-mono text-brand-400 font-bold text-sm tracking-tight">❯_</span>
+              <FaWhatsapp className="text-emerald-400 text-lg group-hover:scale-110 transition-transform duration-300" />
+              <span className="font-mono font-bold text-xs sm:text-sm tracking-wider uppercase text-white">
+                Connect on WhatsApp
+              </span>
+              <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase font-semibold">
+                Online
+              </span>
+            </div>
           </button>
 
-          {/* Secondary — Explore Work */}
+          {/* Secondary Developer Terminal Button (Explore Projects) */}
           <button
             type="button"
             onClick={scrollToProjects}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.10] border border-white/[0.08] hover:border-white/[0.16] text-white text-sm sm:text-base font-semibold transition-all duration-300"
+            className="group relative flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#090b14]/90 hover:bg-[#111526] border border-white/10 hover:border-brand-500/50 text-gray-200 hover:text-white font-mono text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-300 shadow-md active:scale-[0.98]"
           >
-            <span>Explore Work</span>
+            <span className="text-gray-500 group-hover:text-brand-400 transition-colors">//</span>
+            <span>View Architecture &amp; Code</span>
+            <FiArrowRight className="text-gray-400 group-hover:text-brand-400 group-hover:translate-x-1 transition-all" />
           </button>
 
-          {/* TikTok */}
+          {/* Developer TikTok & Devlog Channel */}
           <button
             type="button"
             onClick={handleTikTok}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-transparent hover:bg-white/[0.05] text-gray-300 hover:text-white text-sm font-medium transition-colors"
+            className="group flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/20 text-gray-300 hover:text-white font-mono text-xs uppercase tracking-wider transition-all"
           >
-            <FaTiktok className="text-sm" />
-            <span>TikTok</span>
+            <FaTiktok className="text-sm text-gray-400 group-hover:text-white transition-colors" />
+            <span>DevLogs</span>
           </button>
         </motion.div>
 

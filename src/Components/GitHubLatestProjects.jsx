@@ -192,6 +192,13 @@ const GitHubLatestProjects = () => {
   useEffect(() => {
     let isMounted = true;
 
+    // On 3G or data-saver networks, use the fast verified offline fallback to save bandwidth
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isSlowNetwork = connection && (connection.saveData || connection.effectiveType === '2g' || connection.effectiveType === '3g');
+    if (isSlowNetwork) {
+      return; // 0 network requests on 3G!
+    }
+
     const fetchAll = async () => {
       try {
         const headers = authHeaders();
@@ -220,10 +227,12 @@ const GitHubLatestProjects = () => {
       }
     };
 
-    fetchAll();
+    // Defer API calls until 3.5s after load to leave 100% bandwidth for primary content
+    const timer = setTimeout(fetchAll, 3500);
 
     return () => {
       isMounted = false;
+      clearTimeout(timer);
     };
   }, []);
 

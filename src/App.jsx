@@ -1,16 +1,19 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import HomePage from "./Pages/HomePage";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Project from "./Pages/Project";
-import ContactUs from "./Pages/ContactUs";
 import Footer from "./Components/Footer";
-import ThankYou from "./Pages/ThankYou";
 import WhiteFlakesBackground from "./Components/WhiteFlakesBackground";
 import AppleScrollSection from "./Components/AppleScrollSection";
+import ChatBox from "./Components/ChatBox";
 import { HelmetProvider } from "react-helmet-async";
+
+// Lazy-load secondary routes to reduce initial bundle size on 3G networks
+const Project = lazy(() => import("./Pages/Project"));
+const ContactUs = lazy(() => import("./Pages/ContactUs"));
+const ThankYou = lazy(() => import("./Pages/ThankYou"));
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -46,13 +49,17 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Disable heavy AOS scroll calculations on mobile/3G devices to keep scrolling at 60 FPS
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     AOS.init({
-      duration: 600,
+      duration: isMobile ? 350 : 600,
       easing: 'ease-out-cubic',
       once: true,
-      offset: 20,
+      offset: 15,
       debounceDelay: 50,
       throttleDelay: 99,
+      disable: isMobile ? 'mobile' : false,
     });
 
     const timer = setTimeout(() => {
@@ -70,23 +77,28 @@ function App() {
         {/* Fixed black background layer */}
         <div className="fixed inset-0 -z-10 bg-black" />
 
-        {/* Animated canvas — sits ABOVE the fixed black layer */}
+        {/* Animated canvas / lightweight CSS glow — sits ABOVE the fixed black layer */}
         <WhiteFlakesBackground />
 
         {/* Content — sits ABOVE the canvas */}
         <div className="relative z-10 min-h-screen text-white flex flex-col justify-between selection:bg-white selection:text-black">
           <Navbar />
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<Project />} />
-              <Route path="/contact" element={<ContactUs />} />
-              <Route path="/thankYou" element={<ThankYou />} />
-            </Routes>
+            <Suspense fallback={<div className="min-h-screen bg-black/90 flex items-center justify-center"><div className="w-8 h-8 border-2 border-white/10 border-t-brand-400 rounded-full animate-spin" /></div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<Project />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/thankYou" element={<ThankYou />} />
+              </Routes>
+            </Suspense>
           </main>
           <AppleScrollSection>
             <Footer />
           </AppleScrollSection>
+
+          {/* Floating Live Support & Inquiry Chatbox (Bottom Right) */}
+          <ChatBox />
         </div>
       </Router>
     </HelmetProvider>

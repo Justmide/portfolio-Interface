@@ -1,5 +1,85 @@
+# robots.txt for https://skryptvolt.vercel.app/
+# Allows all search engine crawlers & AI/LLM indexing agents
+
 User-agent: *
+Allow: /
+Allow: /projects
+Allow: /contact
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai-catalog.json
+Allow: /.well-known/ai-plugin.json
+Allow: /favicon.svg
+Allow: /logo.png
+Allow: /logo.jpeg
+Disallow: /thankYou
+Disallow: /api/
+
+# AI Crawlers & LLM Indexing Directives (Explicitly Allowed)
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai-catalog.json
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Googlebot specific directives
+User-agent: Googlebot
 Allow: /
 Disallow: /thankYou
 
-Sitemap: https://skryptbymidey.vercel.app/sitemap.xml
+# Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+
+# YandexBot specific directives
+User-agent: Yandex
+Allow: /
+Disallow: /thankYou
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /thankYou
+
+# Applebot
+User-agent: Applebot
+Allow: /
+Disallow: /thankYou
+
+# DuckDuckBot
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /thankYou
+
+# Sitemaps & LLM Discovery Links
+Sitemap: https://skryptvolt.vercel.app/sitemap.xml
+# LLMs Text Standard: https://skryptvolt.vercel.app/llms.txt
